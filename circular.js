@@ -1,1 +1,2 @@
-const circular = { circular: circular };
+const circular = new object();
+circular = { circular: circular };
