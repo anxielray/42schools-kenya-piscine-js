@@ -1,47 +1,12 @@
-function getAcceleration(params) {
-//   if (
-//     params == null ||
-//     typeof params !== "object" ||
-//     typeof params.m !== "number" ||
-//     params.m <= 0
-//   ) {
-//     return "impossible";
-//   }
-
-  const accelerations = [];
-
-  if (typeof params.f === "number") {
-    const aFromForce = params.f / params.m;
-    accelerations.push(aFromForce);
+function getAcceleration(obj) {
+  if (obj['Δv'] !== undefined && obj['Δt'] !== undefined && obj['Δt'] !== 0) {
+    return obj['Δv'] / obj['Δt'];
   }
-
-  if (
-    typeof params.Δv === "number" &&
-    typeof params.Δt === "number" &&
-    params.Δt > 0
-  ) {
-    const aFromDeltaV = params.Δv / params.Δt;
-    // accelerations.push(aFromDeltaV);
-    return aFromDeltaV
+  if (obj.f !== undefined && obj.m !== undefined && obj.m !== 0) {
+    return obj.f / obj.m;
   }
-
-  if (
-    typeof params.d === "number" &&
-    typeof params.t === "number" &&
-    params.t > 0
-  ) {
-    const aFromDistance = (2 * params.d) / params.t ** 2;
-    accelerations.push(aFromDistance);
+  if (obj.t !== undefined && obj.d !== undefined && obj.t !== 0) {
+    return (2 * obj.d) / (obj.t * obj.t);
   }
-
-  if (accelerations.length === 0) {
-    return "impossible";
-  }
-
-  return accelerations[0];
+  return "impossible";
 }
-
-console.log(getAcceleration({ f: 10, m: 5 }));
-console.log(getAcceleration({ Δv: 100, Δt: 50 }));
-console.log(getAcceleration({ d: 10, t: 1, m: 5 }));
-console.log(getAcceleration({ m: 5 }));
