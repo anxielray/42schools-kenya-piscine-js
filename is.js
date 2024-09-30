@@ -3,7 +3,7 @@ is.num = function (value) {
 };
 
 is.nan = function (value) {
-  return typeof value === Number.isNaN(value);
+  return Number.isNaN(value);
 };
 
 is.str = function (value) {
