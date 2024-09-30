@@ -27,7 +27,7 @@ is.arr = function (value) {
 };
 
 is.obj = function (value) {
-  return (typeof value === "object" && value !== null) || is.fun(value);
+  return value !== null && typeof value === "object"; 
 };
 
 is.fun = function (value) {
@@ -40,4 +40,8 @@ is.truthy = function (value) {
 
 is.falsy = function (value) {
   return !is.truthy(value);
+};
+
+is.null = function (value) {
+  return value === null;
 };
