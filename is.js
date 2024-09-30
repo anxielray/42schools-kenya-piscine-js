@@ -16,7 +16,7 @@
   is.def= function (value) {
     return value !== undefined;
   },
-  arr= Array.isArray,
+  is.arr= Array.isArray,
   is.obj= function (value) {
     return value !== null && typeof value === "object";
   },
