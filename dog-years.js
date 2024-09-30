@@ -12,9 +12,8 @@ function dogYears(planet, ageInSeconds) {
   };
 
   const ageInEarthYears = ageInSeconds / secondsInEarthYear;
-
-  const planetAgeInDogYears = ageInEarthYears * orbitalPeriods[planet];
-  return parseFloat((planetAgeInDogYears * 7).toFixed(2));
+  const planetAgeInDogYears = (ageInEarthYears  * 7) * orbitalPeriods[planet];
+  return parseFloat((planetAgeInDogYears).toFixed(2));
 }
 
-console.log(dogYears("mercury", 2134835688));
+console.log(dogYears("earth", 1000000000));
