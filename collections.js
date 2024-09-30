@@ -22,7 +22,7 @@ const superTypeOf = (value) => {
   } else if (Array.isArray(value)) {
     return "Array";
   } else if (value === null) {
-    return "Null";
+    return "null";
   } else {
     return capitalize(typeof value);
   }
