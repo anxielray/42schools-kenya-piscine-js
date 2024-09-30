@@ -8,7 +8,7 @@
 //   return hash.toString(); //Math.abs(hash);
 // }
 
-function blockChain(data, prev = { index: 0, hash: "0" }) {
+function blockChain(data, prev = { index: 0, hash: '0' }) {
   const block = {
     index: index + 1,
     data: data,
