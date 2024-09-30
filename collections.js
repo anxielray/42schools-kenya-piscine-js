@@ -1,5 +1,5 @@
 const arrToSet = (arr) => new Set(arr);
-const arrToStr = (arr) => arr.toString();
+const arrToStr = (arr) => arr.join("");
 const setToArr = (set) => [...set];
 const setToStr = (set) => `[${Array.from(set).toString()}]`;
 const strToArr = (str) => str.split(",").map((item) => item.trim());
@@ -21,5 +21,3 @@ const superTypeOf = (value) => {
     return typeof value;
   }
 };
-
-console.log(superTypeOf(new Set([1, 2, 3])));
