@@ -1,31 +1,31 @@
-(is.num = function (value) {
-  return typeof value === "number";
-}),
-  (is.nan = function (value) {
+  is.num =  function (value) {
+    return typeof value === "number";
+  },
+  is.nan= function (value) {
     return value !== value;
-  }),
-  (is.str = function (value) {
+  },
+  is.str= function (value) {
     return typeof value === "string";
-  }),
-  (is.bool = function (value) {
+  },
+  is.bool= function (value) {
     return typeof value === "boolean";
-  }),
-  (is.undef = function (value) {
+  },
+  is.undef= function (value) {
     return value === undefined;
-  }),
-  (is.def = function (value) {
+  },
+  is.def= function (value) {
     return value !== undefined;
-  }),
-  (arr = Array.isArray),
-  (is.obj = function (value) {
+  },
+  arr= Array.isArray,
+  is.obj= function (value) {
     return value !== null && typeof value === "object";
-  }),
-  (is.fun = function (value) {
+  },
+  is.fun= function (value) {
     return typeof value === "function";
-  }),
-  (is.truthy = function (value) {
+  },
+  is.truthy= function (value) {
     return !!value;
-  }),
-  (is.falsy = function (value) {
+  },
+  is.falsy= function (value) {
     return !value;
-  });
+  };
