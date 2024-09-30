@@ -23,7 +23,9 @@ const superTypeOf = (value) => {
     return "Array";
   } else if (value === null) {
     return "null";
-  } else {
+  } else if (typeof value === undefined){
+    return "undefined";
+  }else{
     return capitalize(typeof value);
   }
 };
