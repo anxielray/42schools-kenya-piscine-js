@@ -1,2 +1,4 @@
-const circular = new object();
-circular = { circular: circular };
+const circular = {
+  circular: null,
+};
+circular.circular = circular;
