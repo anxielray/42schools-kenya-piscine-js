@@ -1,4 +1,4 @@
-is.num = (value) => typeof value === "number";
+is.num = (value) => typeof value === "number" && !is.nan(value);
 
 is.nan = (value) => Number.isNaN(value);
 
@@ -12,10 +12,11 @@ is.def = (value) => typeof value !== "undefined";
 
 is.arr = (value) => Array.isArray(value);
 
-is.obj = (value) => value !== null && typeof value === "object";
+is.obj = (value) =>
+  value !== null && typeof value === "object" && !is.arr(value);
 
 is.fun = (value) => typeof value === "function";
 
-is.truthy = (value) => !!value === true;
+is.truthy = (value) => Boolean(value) === true;
 
-is.falsy = (value) => !!value === false;
+is.falsy = (value) => Boolean(value) === false;
