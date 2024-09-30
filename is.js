@@ -32,8 +32,11 @@ is.arr = function (value) {
   return Array.isArray(value);
 };
 
-  if (is.obj = value => value !== null && typeof value === 'object' && !Array.isArray(value));
-
+is.obj = (value) =>
+  value !== null &&
+  typeof value === "object" &&
+  !Array.isArray(value) &&
+  !(value instanceof Function);
 
 is.fun = function (value) {
   return typeof value === "function";
