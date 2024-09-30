@@ -25,3 +25,5 @@ const superTypeOf = (value) => {
     return capitalize(typeof value);
   }
 };
+
+console.log(superTypeOf(null));
