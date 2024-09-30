@@ -1,2 +1,3 @@
-const smalls = -Number.MAX_VALUE;
-const biggie = Number.MAX_VALUE;
+const ans = Number.MAX_VALUE.toExponential().replace("+", "");
+const smalls = '-' + ans;
+const biggie = ans;
