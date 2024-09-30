@@ -1,5 +1,5 @@
 is.num = function (value) {
-  return typeof value === "number";
+  return typeof value === "number" && !is.nan(value);
 };
 
 is.nan = function (value) {
@@ -27,7 +27,7 @@ is.arr = function (value) {
 };
 
 is.obj = function (value) {
-  return value !== null && typeof value === "object"; 
+  return value !== null && typeof value === "object" && !is.arr(value);
 };
 
 is.fun = function (value) {
