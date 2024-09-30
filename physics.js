@@ -11,5 +11,8 @@ function getAcceleration(params) {
   }
 
   const a = params.f / params.m;
+  if (n == Number.NaN ){
+    return "impossible";
+  }
   return a;
 }
