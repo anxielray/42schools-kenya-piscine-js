@@ -21,9 +21,9 @@ const superTypeOf = (value) => {
     return "Set";
   } else if (Array.isArray(value)) {
     return "Array";
+  } else if (value === null) {
+    return "Null";
   } else {
     return capitalize(typeof value);
   }
 };
-
-console.log(superTypeOf(null));
