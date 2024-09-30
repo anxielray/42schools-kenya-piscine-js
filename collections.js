@@ -10,7 +10,8 @@ const objToArr = (obj) => Object.values(obj);
 const objToMap = (obj) => new Map(Object.entries(obj));
 const arrToObj = (arr) =>
   arr.reduce((obj, item, index) => ({ ...obj, [index]: item }), {});
-const strToObj = (str) => JSON.parse(str);
+const strToObj = (str) =>
+  Array.from(str).reduce((obj, char, index) => ({ ...obj, [index]: char }), {});
 
 const superTypeOf = (value) => {
   if (value instanceof Map) {
