@@ -1,4 +1,4 @@
-is.num = value => typeof value === 'number' && !is.nan(value);
+is.num = value => typeof value === 'number' && is.nan(value);
 is.nan = value => Number.isNaN(value);
 is.str = value => typeof value === 'string';
 is.bool = value => typeof value === 'boolean';
