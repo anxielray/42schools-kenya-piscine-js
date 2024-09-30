@@ -1,4 +1,4 @@
-const escapeStr = 'Anxile\'s, "World", /!\\';
+const escapeStr = 'Anxile\'s, "World`s", /!\\';
 const arr = [4, 2];
 const obj = {
   str: "Hello, World!",
