@@ -8,4 +8,5 @@ function last(value) {
 
 function kiss(value) {
   let returnArr = [value[0], value[value.length - 1]];
+  return returnArr;
 }
