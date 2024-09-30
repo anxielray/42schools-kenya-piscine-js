@@ -7,6 +7,6 @@ function last(value) {
 }
 
 function kiss(value) {
-  let returnArr = [value[0], value[value.length - 1]];
+  let returnArr = [value[value.length - 1], value[0]];
   return returnArr;
 }
