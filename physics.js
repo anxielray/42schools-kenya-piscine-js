@@ -14,3 +14,5 @@ function getAcceleration(params) {
   const a = params.f / params.m;
   return a;
 }
+
+console.log(getAcceleration({ Δv: 100, Δt: 50 }));
