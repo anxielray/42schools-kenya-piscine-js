@@ -32,12 +32,8 @@ is.arr = function (value) {
   return Array.isArray(value);
 };
 
-is.obj = function (value) {
-  if (value !== null && typeof value === "object") {
-    return true;
-  }
-  return false;
-};
+  if (is.obj = value => value !== null && typeof value === 'object' && !Array.isArray(value));
+
 
 is.fun = function (value) {
   return typeof value === "function";
