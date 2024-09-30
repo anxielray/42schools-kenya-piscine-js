@@ -9,7 +9,7 @@ const obj = {
 const nested = {
   arr: [4, undefined, 2],
   obj: {
-    str: "Hello, World!",
+    str: 'Hello, World!',
     num: 10,
     bool: true,
     undef: undefined,
