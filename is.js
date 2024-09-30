@@ -1,5 +1,8 @@
 const is = {};
 is.num = function (value) {
+  if (typeof value === is.nan(value)) {
+    return false;
+  }
   return typeof value === "number" && !is.nan(value);
 };
 
