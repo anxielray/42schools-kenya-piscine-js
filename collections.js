@@ -12,13 +12,15 @@ const arrToObj = (arr) =>
   arr.reduce((obj, item, index) => ({ ...obj, [index]: item }), {});
 const strToObj = (str) =>
   Array.from(str).reduce((obj, char, index) => ({ ...obj, [index]: char }), {});
+const capitalize = (str) =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
-const superTypeOf = (value) => {
+  const superTypeOf = (value) => {
   if (value instanceof Map) {
     return "Map";
   } else if (value instanceof Set) {
     return "Set";
   } else {
-    return typeof value;
+    return capitalize(typeof value);
   }
 };
