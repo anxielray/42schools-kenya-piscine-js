@@ -1,12 +1,12 @@
-function hashCode(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    let char = str.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash | 0; //hash & hash;
-  }
-  return hash.toString(); //Math.abs(hash);
-}
+// function hashCode(str) {
+//   let hash = 0;
+//   for (let i = 0; i < str.length; i++) {
+//     let char = str.charCodeAt(i);
+//     hash = (hash << 5) - hash + char;
+//     hash = hash | 0; //hash & hash;
+//   }
+//   return hash.toString(); //Math.abs(hash);
+// }
 
 function blockChain(data, prev = { index: 0, hash: "0" }) {
   const block = {
