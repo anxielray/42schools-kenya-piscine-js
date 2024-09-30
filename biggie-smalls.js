@@ -1,4 +1,2 @@
-const smalls = -Number.MAX_VALUE//.toExponential().replace("+", "");
+const smalls = -Number.MAX_VALUE;
 const biggie = Number.MAX_VALUE.toExponential().replace("+", "");
-console.log(smalls);
-console.log(biggie);
