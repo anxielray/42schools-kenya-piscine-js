@@ -14,7 +14,7 @@ function blockChain(data, prev = { index: 0, hash: "0" }) {
     data: data,
     prev: prev,
     get hash() {
-      return hashCode(this.indes + this.prev.hash + JSON.stringify(this.data));
+      return hashCode(this.index + this.prev.hash + JSON.stringify(this.data));
     },
   };
   return block;
