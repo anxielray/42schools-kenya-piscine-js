@@ -2,7 +2,7 @@ function round(x) {
   let sign = false;
   if (x < 0) {
     sign = true;
-    x = -1;
+    x = -x;
   }
   let count = 0;
   while (!(x < 1 && x > -1)) {
