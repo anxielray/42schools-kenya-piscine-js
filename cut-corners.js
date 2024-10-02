@@ -130,16 +130,9 @@ function divide(a, b) {
 // console.log(trunc(-4.9));
 // console.log(trunc(10.0));
 
-// const nums = [3.7, -3.7, 3.1, -3.1];
+const nums = [3, -4, 2, -3, 0];
 // console.log(nums.map(trunc))
 // console.log(nums.map(round));
 // console.log(nums.map(ceil))
-// console.log(nums.map(floor))
-
-// Output:
-
-// [ 4, -4, 3, -3 ]round
-// [ 3, -4, 3, -4 ]floor
-// [ 3, -3, 3, -3 ]truncate
-// [ 4, -3, 4, -3 ]ceil
+console.log(nums.map(floor));
 // */
