@@ -2,11 +2,11 @@ function round(x) {
   let sign = false;
   if (x < 0) {
     sign = true;
-    x = -x;
+    x = -1;
   }
   let count = 0;
   while(!(x < 1 && x > -1)){
-    x= -1;
+    x -= 1;
     count++;
   }
   if (x < 0.5){
