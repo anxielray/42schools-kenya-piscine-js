@@ -11,12 +11,12 @@ function findExpression(number) {
   let current = 1;
 
   while (current < number) {
-    if (current * 2 < number) {
-      result += current * 2 + " *";
-      current *= 2;
-    } else if (current + 4 <= number) {
+    if (current * mul2 < number) {
+      result += current * mul2 + " *";
+      current *= mul2;
+    } else if (current + add4 <= number) {
       result += current + " +";
-      current += 4;
+      current += add4;
     } else {
       return undefined;
     }
