@@ -1,4 +1,4 @@
-function customSplit(string, separator, limit) {
+function split(string, separator, limit) {
   if (separator === undefined) {
     return [string];
   }
@@ -34,7 +34,7 @@ function customSplit(string, separator, limit) {
   return result;
 }
 
-function customJoin(array, separator = ",") {
+function join(array, separator = ",") {
   let result = "";
 
   for (let i = 0; i < array.length; i++) {
