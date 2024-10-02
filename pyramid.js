@@ -15,7 +15,7 @@ function pyramid(character, height) {
       result += spaces + row;
     }
   }
-  return result;
+  return " "+result;
 }
 
-console.log(pyramid("a", 5));
+console.log(pyramid("{}", 12));
