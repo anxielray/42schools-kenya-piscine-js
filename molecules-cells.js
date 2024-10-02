@@ -36,7 +36,7 @@ function DNA(input) {
 }
 
 function RNA(input) {
-  if (input.length < 4 && input === "") {
+  if (input.length < 4 && input !== "") {
     throw new Error("Invalid DNA strand length");
   } else if (input === "") {
     return "";
@@ -56,4 +56,3 @@ function RNA(input) {
   }
   return result.toUpperCase();
 }
-console.log(RNA(''));
