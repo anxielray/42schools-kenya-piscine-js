@@ -18,7 +18,7 @@ function pyramid(str, height) {
       result += spaces + characters;
     }
   }
-  return " "+result;
+  return result;
 }
 
-console.log(pyramid("a", 10));
+// console.log(pyramid("a", 10));
