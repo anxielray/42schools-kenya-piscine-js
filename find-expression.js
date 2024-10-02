@@ -8,20 +8,21 @@ For example, for the number 8, you must first multiply by 2 twice, and then add 
 const add4 = 4;
 const mul2 = 2;
 function findExpression(number) {
-  let result = "";
-  let current = 1;
-
-  while (current < number) {
-    if (current * mul2 < number) {
-      result += current * mul2 + " *";
-      current *= mul2;
-    } else if (current + add4 <= number) {
-      result += current + " +";
-      current += add4;
-    } else {
-      return undefined;
+    for (let i = 0; i < 100000; i++) {
+        let result = 1;
+        let sequence = "1";
+        while(result <= number) {
+            if (result === number) {
+                return sequence;
+            }
+            if (Math.random() < 0.4 + 0.1){
+                result += add4;
+                sequence += " "+ add4;//` + ${add4}`;
+            }else {
+                result *= mul2;
+                sequence += " *"+ mul2;//` * ${mul2}`;
+            }
+        }
     }
-  }
-
-  return result.slice(0, -1);
+return undefined;
 }
