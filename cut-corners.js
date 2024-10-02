@@ -81,6 +81,9 @@ function modulo(a, b) {
 }
 
 function divide(a, b) {
+    if (b == 0){
+        return 0;
+    }
   let result = 0;
   let sign = (a < 0 && b > 0) || (a > 0 && b < 0) ? -1 : 1;
   if (a < 0) {
