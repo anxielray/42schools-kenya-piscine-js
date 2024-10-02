@@ -10,7 +10,7 @@ function split(string, separator, limit) {
     for (let i = 0; i < string.length; i++) {
       result.push(string[i]);
     }
-    return result;
+    return removeEmptyString(result);
   }
 
   while (startIndex < string.length) {
@@ -31,7 +31,7 @@ function split(string, separator, limit) {
     }
   }
 
-  return result;
+  return removeEmptyString(result);
 }
 
 function join(array, separator = ",") {
@@ -46,4 +46,11 @@ function join(array, separator = ",") {
   }
 
   return result;
+}
+
+function removeEmptyString(arr) {
+  if (arr.includes("")) {
+    return arr.filter((item) => item !== "");
+  }
+  return arr;
 }
