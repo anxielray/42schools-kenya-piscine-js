@@ -1,4 +1,4 @@
-function customSlice(array, start = 0, end = array.length) {
+function slice(array, start = 0, end = array.length) {
   if (start < 0) {
     start = Math.max(array.length + start, 0);
   }
