@@ -88,3 +88,17 @@ function trunc(x) {
 // console.log(trunc(4.9));
 // console.log(trunc(-4.9));
 // console.log(trunc(10.0));
+
+const nums = [3.7, -3.7, 3.1, -3.1]
+console.log(nums.map(floor))
+console.log(nums.map(trunc))
+console.log(nums.map(ceil))
+// console.log(nums.map(round))
+
+// Output:
+
+// [ 4, -4, 3, -3 ]
+// [ 3, -4, 3, -4 ]
+// [ 3, -3, 3, -3 ]
+// [ 4, -3, 4, -3 ]
+// */
