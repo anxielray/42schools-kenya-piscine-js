@@ -5,7 +5,8 @@
     If the number can not be reached you should return undefined
 
 For example, for the number 8, you must first multiply by 2 twice, and then add 4. Your function should return something like: 1 *2 *2 +4.*/
-
+const add4 = 4;
+const mul2 = 2;
 function findExpression(number) {
   let result = "";
   let current = 1;
