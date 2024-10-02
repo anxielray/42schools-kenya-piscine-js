@@ -4,7 +4,14 @@ The string will denote the characters which construct the triangle, and the numb
 
 function triangle(str, height) {
   let result = "";
-
+  if (str.length === 0) {
+    return "";
+  }
+  if (height <= 0) {
+    return "";
+  } else if (height === 1) {
+    return str + "\n";
+  }
   for (let i = 0; i < height; i++) {
     let row = "";
     for (let j = 0; j < i + 1; j++) {
