@@ -8,7 +8,7 @@ function round(x) {
     if (decimalPart < -4) {
       return ceil(x) - 1;
     } else if (decimalPart > -5) {
-      return floor(x);
+      return floor(x)+1;
     }
   } else if (x > 0) {
     if (decimalPart > 4) {
@@ -106,3 +106,16 @@ function divide(a, b) {
   }
   return sign * result;
 }
+
+// const nums = [3.7, -3.7, 3.1, -3.1]
+// console.log(nums.map(round))
+// console.log(nums.map(floor))
+// console.log(nums.map(trunc))
+// console.log(nums.map(ceil))
+
+// Output:
+
+// [ 4, -4, 3, -3 ]
+// [ 3, -4, 3, -4 ]
+// [ 3, -3, 3, -3 ]
+// [ 4, -3, 4, -3 ]
