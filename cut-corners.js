@@ -6,9 +6,9 @@ function round(x) {
   let decimalPart = modulo(toWhole, 10);
   if (x < 0) {
     if (decimalPart < -4) {
-      return ceil(x) - 1;
+      return ceil(x)-1;
     } else if (decimalPart > -5) {
-      return floor(x) + 1;
+      return floor(x)+1;
     }
   } else if (x > 0) {
     if (decimalPart > 4) {
@@ -29,7 +29,7 @@ function ceil(x) {
     for (let i = 0; i >= x - 1; i--) {
       integerPart = i;
     }
-    return integerPart + 1;
+    return integerPart+1;
   } else {
     for (let i = 0; i <= x; i++) {
       integerPart = i;
@@ -54,7 +54,7 @@ function floor(x) {
       integerPart = -i;
     }
     if (integerPart < 0) {
-      return integerPart - 1;
+        return integerPart - 1;
     }
   } else {
     for (let i = 0; i <= x; i++) {
@@ -116,11 +116,11 @@ function divide(a, b) {
   return sign * result;
 }
 
-// const nums = [3.7, -3.7, 3.1, -3.1]
-// console.log(nums.map(round))
-// console.log(nums.map(floor))
-// console.log(nums.map(trunc))
-// console.log(nums.map(ceil))
+const nums = [3.7, -3.7, 3.1, -3.1]
+console.log(nums.map(round))
+console.log(nums.map(floor))
+console.log(nums.map(trunc))
+console.log(nums.map(ceil))
 
 // Output:
 
