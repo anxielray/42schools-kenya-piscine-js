@@ -1,9 +1,5 @@
-function split(string, separator, limit) {
-  if (separator === undefined) {
-    return [string];
-  }
-
-  const result = [];
+function split(string, separator) {
+  let result = [];
   let startIndex = 0;
 
   if (separator === "") {
@@ -13,27 +9,25 @@ function split(string, separator, limit) {
     return result;
   }
 
-  while (startIndex < string.length) {
-    const separatorIndex = string.indexOf(separator, startIndex);
+  for (let i = 0; i <= string.length; i++) {
+    if (i === string.length || string[i] === separator[0]) {
+      let match = true;
+      for (let j = 0; j < separator.length; j++) {
+        if (string[i + j] !== separator[j]) {
+          match = false;
+          break;
+        }
+      }
 
-    if (separatorIndex === -1) {
-      result.push(string.slice(startIndex));
-      break;
-    }
-
-    result.push(string.slice(startIndex, separatorIndex));
-
-    startIndex = separatorIndex + separator.length;
-
-    if (limit !== undefined && result.length >= limit) {
-      result.push(string.slice(startIndex));
-      break;
+      if (match) {
+        result.push(string.slice(startIndex, i));
+        startIndex = i + separator.length;
+        i += separator.length - 1;
+      }
     }
   }
 
-  if (startIndex >= string.length && result[result.length - 1] !== "") {
-    result.push("");
-  }
+  result.push(string.slice(startIndex));
 
   return result;
 }
@@ -51,3 +45,4 @@ function join(array, separator = ",") {
 
   return result;
 }
+console.log(split("grade,4and,grades,", ","));
