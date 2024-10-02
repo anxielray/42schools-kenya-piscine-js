@@ -1,6 +1,15 @@
-// Round function
 function round(x) {
-  let integerPart = x < 0 ? -(-x | 0) : x | 0; // Equivalent to Math.floor() for positive and Math.ceil() for negative
+  let integerPart = 0;
+
+  if (x < 0) {
+    for (let i = 0; i <= -x; i++) {
+      integerPart = -i;
+    }
+  } else {
+    for (let i = 0; i <= x; i++) {
+      integerPart = i;
+    }
+  }
   let decimalPart = x - integerPart;
 
   if (decimalPart >= 0.5) {
@@ -10,19 +19,57 @@ function round(x) {
 }
 
 function ceil(x) {
-  let integerPart = x < 0 ? -(-x | 0) : x | 0;
-  if (x === integerPart) {
+  let integerPart = 0;
+
+  if (x < 0) {
+    for (let i = 0; i >= x - 1; i--) {
+      integerPart = i;
+    }
     return integerPart;
+  } else {
+    for (let i = 0; i <= x; i++) {
+      integerPart = i;
+    }
+
+    if (integerPart < x) {
+      return integerPart + 1;
+    }
   }
-  return integerPart + 1;
+
+  return integerPart;
 }
 
 function floor(x) {
-  return x < 0 ? -(-x | 0) : x | 0;
+  let integerPart = 0;
+
+  if (x < 0) {
+    for (let i = 0; i <= -x; i++) {
+      integerPart = -i;
+    }
+  } else {
+    for (let i = 0; i <= x; i++) {
+      integerPart = i;
+    }
+  }
+
+  return integerPart;
 }
 
 function trunc(x) {
-  return x < 0 ? -(-x | 0) : x | 0;
+  let integerPart = 0;
+
+  if (x < 0) {
+    for (let i = 0; i < -x; i++) {
+      integerPart = -i;
+    }
+    return integerPart;
+  } else {
+    for (let i = 0; i <= x; i++) {
+      integerPart = i;
+    }
+  }
+
+  return integerPart;
 }
 
 // console.log(round(4.5));
@@ -35,9 +82,9 @@ function trunc(x) {
 // console.log(ceil(4.0));
 
 // console.log(floor(4.9));
-// console.log(floor(-4.9));
+// console.log(floor(-3.9));
 // console.log(floor(4.0));
 
 // console.log(trunc(4.9));
 // console.log(trunc(-4.9));
-// console.log(trunc(4.0));
+// console.log(trunc(10.0));
