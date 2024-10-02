@@ -34,5 +34,7 @@ function keepLast(str) {
 }
 
 function keepFirstLast(str) {
-  return keepFirst(cutLast(str));
+  return keepFirst(str) + keepLast(str);
 }
+
+// console.log(keepFirstLast('abcdef'));
