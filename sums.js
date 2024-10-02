@@ -27,4 +27,4 @@ function sums(n) {
   return result.slice(0, -2 );
 }
 
-// console.log(sums(4)); // Output: [ [1, 1, 1, 1], [1, 1, 2], [1, 3], [2, 2] ]
+console.log(sums(2)); // Output: [ [1, 1, 1, 1], [1, 1, 2], [1, 3], [2, 2] ]
