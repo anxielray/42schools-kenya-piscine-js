@@ -74,7 +74,7 @@ function trunc(x) {
 
 // console.log(round(4.5));
 // console.log(round(4.4));
-// console.log(round(-4.5));
+// console.log(round(-3));
 // console.log(round(-4.4));
 
 // console.log(ceil(4.1));
