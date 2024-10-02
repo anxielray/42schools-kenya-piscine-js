@@ -11,7 +11,7 @@ function findExpression(number) {
         sequence += " " + add4; //` + ${add4}`;
       } else {
         result *= 2;
-        sequence += " *" + mul2; //` * ${mul2}`;
+        sequence += " " + mul2; //` * ${mul2}`;
       }
     }
   }
