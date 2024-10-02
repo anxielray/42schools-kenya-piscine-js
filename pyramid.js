@@ -10,7 +10,7 @@ function pyramid(str, height) {
   let result = "";
   for (let row = 1; row <= height; row++) {
     const spaces = " ".repeat(height - row);
-    str = "*".repeat(2 * row - 1);
+    str = str.repeat(2 * row - 1);
     if (row !== height) {
       result += spaces + str + "\n";
     } else {
@@ -20,4 +20,4 @@ function pyramid(str, height) {
   return result;
 }
 
-console.log(pyramid("*", 10));
+console.log(pyramid("w", 10));
