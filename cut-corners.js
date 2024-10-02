@@ -25,15 +25,16 @@ function round(x) {
 }
 
 function ceil(x) {
-  if (!x) return 0;
-  let sign = false;
-  let int = x;
-  if (x < 0) {
-    sign = true;
-    x = -x;
-  }
-  while (!(int < 1 && int > -1)) {
-    int = -1;
+    if (!x) return 0;
+    let sign = false;
+    if (x < 0) {
+        sign = true;
+        x = -x;
+    }
+    let int = x;
+    let count = 0;
+  while (!(int < 1 && int >= 0)) {
+    int -= 1;
     count++;
   }
   if (sign) {
@@ -47,7 +48,7 @@ function floor(x) {
   let sign = false;
   if (x < 0) {
     sign = true;
-    x = -1;
+    x = -x;
   }
   let int = x;
   let count = 0;
@@ -65,7 +66,7 @@ function floor(x) {
 function trunc(x) {
   let count = 0;
   if (x > 0xfffffffff) {
-    int -= 0xfffffffff;
+    x -= 0xfffffffff;
     count += 0xfffffffff;
   }
   let sign = false;
