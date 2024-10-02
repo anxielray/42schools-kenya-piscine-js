@@ -1,23 +1,27 @@
 function round(x) {
-  if (x === 0) {
-    return 0;
-  }
-  let toWhole = x * 10;
-  let decimalPart = modulo(toWhole, 10);
+  let sign = false;
   if (x < 0) {
-    if (decimalPart < -4) {
-      return ceil(x) - 1;
-    } else if (decimalPart > -5) {
-      return floor(x);
+    sign = true;
+    x = -x;
+  }
+  let count = 0;
+  while(!(x < 1 && x > -1)){
+    x= -1;
+    count++;
+  }
+  if (x < 0.5){
+    if (sign) {
+        return -count;
+    }else {
+        return count;
     }
-  } else if (x > 0) {
-    if (decimalPart > 4) {
-      return ceil(x);
-    } else if (decimalPart < 5) {
-      return floor(x);
+  }else {
+    if (sign) {
+        return -count - 1;
+    } else {
+        return count + 1;
     }
   }
-  return x;
 }
 
 function ceil(x) {
