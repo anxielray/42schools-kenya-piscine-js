@@ -1,21 +1,19 @@
 function round(x) {
-  let integerPart = 0;
-
+  let toWhole = x * 10;
+  let decimalPart = modulo(toWhole, 10);
   if (x < 0) {
-    for (let i = 0; i <= -x; i++) {
-      integerPart = -i;
+    if (decimalPart < -4) {
+      return ceil(x);
+    } else if (decimalPart > -5) {
+      return floor(x);
     }
-  } else {
-    for (let i = 0; i <= x; i++) {
-      integerPart = i;
+  } else if (x > 0) {
+    if (decimalPart > 4) {
+      return ceil(x);
+    } else if (decimalPart < 5) {
+      return floor(x);
     }
   }
-  let decimalPart = x - integerPart;
-
-  if (decimalPart >= 0.5) {
-    return integerPart + 1;
-  }
-  return integerPart;
 }
 
 function ceil(x) {
@@ -72,6 +70,37 @@ function trunc(x) {
   return integerPart;
 }
 
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error("Cannot modulo by zero");
+  }
+  let preDivide = divide(a, b);
+  let postDivide = preDivide * b;
+  if (postDivide < 0) {
+    postDivide = -postDivide;
+    return a + postDivide;
+  }
+  return a - postDivide;
+}
+
+function divide(a, b) {
+  if (b === 0) {
+    throw new Error("Cannot divide by zero");
+  }
+  let result = 0;
+  let sign = (a < 0 && b > 0) || (a > 0 && b < 0) ? -1 : 1;
+  if (a < 0) {
+    a = -a;
+  }
+  if (b < 0) {
+    b = -b;
+  }
+  while (a >= b) {
+    result++;
+    a -= b;
+  }
+  return sign * result;
+}
 // console.log(round(4.5));
 // console.log(round(4.4));
 // console.log(round(-3));
@@ -89,16 +118,16 @@ function trunc(x) {
 // console.log(trunc(-4.9));
 // console.log(trunc(10.0));
 
-const nums = [3.7, -3.7, 3.1, -3.1]
-console.log(nums.map(floor))
-console.log(nums.map(trunc))
-console.log(nums.map(ceil))
-// console.log(nums.map(round))
+// const nums = [3.7, -3.7, 3.1, -3.1];
+// console.log(nums.map(trunc))
+// console.log(nums.map(round));
+// console.log(nums.map(ceil))
+// console.log(nums.map(floor))
 
 // Output:
 
-// [ 4, -4, 3, -3 ]
-// [ 3, -4, 3, -4 ]
-// [ 3, -3, 3, -3 ]
-// [ 4, -3, 4, -3 ]
+// [ 4, -4, 3, -3 ]round
+// [ 3, -4, 3, -4 ]floor
+// [ 3, -3, 3, -3 ]truncate
+// [ 4, -3, 4, -3 ]ceil
 // */
