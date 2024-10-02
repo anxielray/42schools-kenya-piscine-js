@@ -23,12 +23,12 @@ function DNA(input) {
   for (var i = 0; i < input.length; i++) {
     if (input[i] === "G" || input[i] === "g") {
       result += "C";
-    } else if (input[i] === "C" || input[i] === "c") {
+    } else if (input[i] === "C" || input[i] == "c") {
       result += "G";
-    } else if (input[i] === "T" || input[i] === "t") {
+    } else if (input[i] === "U" || input[i] === "u") {
       result += "A";
     } else if (input[i] === "A" || input[i] === "a") {
-      result += "U";
+      result += "T";
     }
     continue;
   }
@@ -45,14 +45,15 @@ function RNA(input) {
   for (var i = 0; i < input.length; i++) {
     if (input[i] === "G" || input[i] === "g") {
       result += "C";
-    } else if (input[i] === "C" || input[i] == "c") {
+    } else if (input[i] === "C" || input[i] === "c") {
       result += "G";
-    } else if (input[i] === "U" || input[i] === "u") {
+    } else if (input[i] === "T" || input[i] === "t") {
       result += "A";
     } else if (input[i] === "A" || input[i] === "a") {
-      result += "T";
+      result += "U";
     }
     continue;
   }
   return result.toUpperCase();
 }
+// console.log(RNA("TAGC"));
