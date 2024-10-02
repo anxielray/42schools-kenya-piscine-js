@@ -14,8 +14,10 @@ DNA | RNA
 Each strand must be represented as upper case string, without spaces, eg: "ATCG" is a valid DNA strand.*/
 
 function DNA(input) {
-  if (input.length < 4) {
+  if (input.length < 4 && input !== "") {
     throw new Error("Invalid DNA strand length");
+  } else if (input === "") {
+    return "";
   }
   let result = "";
   for (var i = 0; i < input.length; i++) {
@@ -34,8 +36,10 @@ function DNA(input) {
 }
 
 function RNA(input) {
-  if (input.length < 4) {
+  if (input.length < 4 && input === "") {
     throw new Error("Invalid DNA strand length");
+  } else if (input === "") {
+    return "";
   }
   let result = "";
   for (var i = 0; i < input.length; i++) {
