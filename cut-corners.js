@@ -71,9 +71,6 @@ function trunc(x) {
 }
 
 function modulo(a, b) {
-  if (b === 0) {
-    throw new Error("Cannot modulo by zero");
-  }
   let preDivide = divide(a, b);
   let postDivide = preDivide * b;
   if (postDivide < 0) {
@@ -84,9 +81,6 @@ function modulo(a, b) {
 }
 
 function divide(a, b) {
-  if (b === 0) {
-    throw new Error("Cannot divide by zero");
-  }
   let result = 0;
   let sign = (a < 0 && b > 0) || (a > 0 && b < 0) ? -1 : 1;
   if (a < 0) {
