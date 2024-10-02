@@ -56,3 +56,4 @@ function RNA(input) {
   }
   return result.toUpperCase();
 }
+console.log(RNA(''));
