@@ -4,7 +4,7 @@ function round(x) {
     sign = true;
     x = -1;
   }
-  let count = 0;
+  let count = 0;//
   while(!(x < 1 && x > -1)){
     x -= 1;
     count++;
