@@ -106,3 +106,16 @@ function divide(a, b) {
   }
   return sign * result;
 }
+
+const nums = [3, -3, 3, -3, 0]
+console.log(nums.map(round))
+console.log(nums.map(floor))
+console.log(nums.map(trunc))
+console.log(nums.map(ceil))
+
+// Output:
+
+// [ 4, -4, 3, -3 ]
+// [ 3, -4, 3, -4 ]
+// [ 3, -3, 3, -3 ]
+// [ 4, -3, 4, -3 ]
