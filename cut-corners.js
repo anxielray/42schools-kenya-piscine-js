@@ -1,5 +1,5 @@
 function round(x) {
-  if (x == 0) {
+  if (x === 0) {
     return 0;
   }
   let toWhole = x * 10;
@@ -8,7 +8,7 @@ function round(x) {
     if (decimalPart < -4) {
       return ceil(x) - 1;
     } else if (decimalPart > -5) {
-      return floor(x) + 1;
+      return floor(x);
     }
   } else if (x > 0) {
     if (decimalPart > 4) {
@@ -17,19 +17,20 @@ function round(x) {
       return floor(x);
     }
   }
+  return x;
 }
 
 function ceil(x) {
-  if (x == 0) {
+  if (x === 0) {
     return 0;
   }
   let integerPart = 0;
 
   if (x < 0) {
-    for (let i = 0; i >= x - 1; i--) {
+    for (let i = 0; i >= x; i--) {
       integerPart = i;
     }
-    return integerPart + 1;
+    return integerPart;
   }
   if (x > 0) {
     for (let i = 0; i <= x; i++) {
@@ -38,23 +39,21 @@ function ceil(x) {
     if (integerPart < x) {
       return integerPart + 1;
     }
-    return integerPart;
   }
+  return integerPart;
 }
 
 function floor(x) {
-  if (x == 0) {
+  if (x === 0) {
     return 0;
   }
   let integerPart = 0;
 
   if (x < 0) {
-    for (let i = 0; i <= -x; i++) {
-      integerPart = -i;
+    for (let i = 0; i < -x; i++) {
+      integerPart = -i - 1;
     }
-    if (integerPart < 0) {
-      return integerPart - 1;
-    }
+    return integerPart;
   } else {
     for (let i = 0; i <= x; i++) {
       integerPart = i;
@@ -64,7 +63,7 @@ function floor(x) {
 }
 
 function trunc(x) {
-  if (x == 0) {
+  if (x === 0) {
     return 0;
   }
   let integerPart = 0;
@@ -79,14 +78,10 @@ function trunc(x) {
       integerPart = i;
     }
   }
-
   return integerPart;
 }
 
 function modulo(a, b) {
-  if (b == 0) {
-    return 0;
-  }
   let preDivide = divide(a, b);
   let postDivide = preDivide * b;
   if (postDivide < 0) {
@@ -97,9 +92,6 @@ function modulo(a, b) {
 }
 
 function divide(a, b) {
-  if (b == 0) {
-    return 0;
-  }
   let result = 0;
   let sign = (a < 0 && b > 0) || (a > 0 && b < 0) ? -1 : 1;
   if (a < 0) {
@@ -114,16 +106,3 @@ function divide(a, b) {
   }
   return sign * result;
 }
-
-const nums = [3.7, -3.7, 3.1, -3.1];
-console.log(nums.map(round));
-console.log(nums.map(floor));
-console.log(nums.map(trunc));
-console.log(nums.map(ceil));
-
-// Output:
-
-// [ 4, -4, 3, -3 ]
-// [ 3, -4, 3, -4 ]
-// [ 3, -3, 3, -3 ]
-// [ 4, -3, 4, -3 ]
