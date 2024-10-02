@@ -1,4 +1,7 @@
 function round(x) {
+  if (x == 0) {
+    return 0;
+  }
   let toWhole = x * 10;
   let decimalPart = modulo(toWhole, 10);
   if (x < 0) {
@@ -17,6 +20,9 @@ function round(x) {
 }
 
 function ceil(x) {
+  if (x == 0) {
+    return 0;
+  }
   let integerPart = 0;
 
   if (x < 0) {
@@ -38,6 +44,9 @@ function ceil(x) {
 }
 
 function floor(x) {
+  if (x == 0) {
+    return 0;
+  }
   let integerPart = 0;
 
   if (x < 0) {
@@ -54,6 +63,9 @@ function floor(x) {
 }
 
 function trunc(x) {
+  if (x == 0) {
+    return 0;
+  }
   let integerPart = 0;
 
   if (x < 0) {
