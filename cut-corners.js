@@ -8,7 +8,7 @@ function round(x) {
     if (decimalPart < -4) {
       return ceil(x) - 1;
     } else if (decimalPart > -5) {
-      return floor(x) + 1;
+      return floor(x);
     }
   } else if (x > 0) {
     if (decimalPart > 4) {
