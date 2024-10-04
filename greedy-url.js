@@ -22,7 +22,7 @@ function greedyQuery(dataSet) {
 }
 
 function notSoGreedy(dataSet) {
-    const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&)?[^&]*/g;
+  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&[^&]*){1,2}[^&]*/g;
   const urls = dataSet.match(urlRegex);
   return urls || [];
 }
