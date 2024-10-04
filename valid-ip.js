@@ -6,5 +6,3 @@ function findIP(input) {
 
   return matches || [];
 }
-
-// console.log(findIP(s));
