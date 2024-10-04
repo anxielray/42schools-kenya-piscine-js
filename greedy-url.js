@@ -1,31 +1,28 @@
-/*Create 3 functions, which accept a string which we'll refer to as the dataSet.
-Your function should return an array of strings.
-
-    getURL: returns all URLs present in the dataSet.
-    greedyQuery: returns URLs from the dataSet, with at least 3 query parameters.
-    notSoGreedy: returns URLs from the dataSet, with at least 2, but not more then 3 query parameters.
-
-Example dataSet:
-
-qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?y&wedding&andwent&window&shopping*/
-
 function getURL(dataSet) {
-  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*/g;
-  const urls = dataSet.match(urlRegex);
-  return urls || [];
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return dataSet.match(urlRegex) || [];
 }
 
 function greedyQuery(dataSet) {
-  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&){2,}[^&]*/g;
-  const urls = dataSet.match(urlRegex);
-  return urls || [];
+  const urls = getURL(dataSet);
+  return urls.filter((url) => {
+    const queryParams = url.split("?")[1];
+    if (queryParams) {
+      const params = queryParams.split("&");
+      return params.length >= 3;
+    }
+    return false;
+  });
 }
 
 function notSoGreedy(dataSet) {
-  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&[^&]*){1,2}[^&]*/g;
-  const urls = dataSet.match(urlRegex);
-  return urls || [];
+  const urls = getURL(dataSet);
+  return urls.filter((url) => {
+    const queryParams = url.split("?")[1];
+    if (queryParams) {
+      const params = queryParams.split("&");
+      return params.length >= 2 && params.length <= 3;
+    }
+    return false;
+  });
 }
-// let dataSet =
-//   "qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?y&wedding&andwent&window&shopping";
-// console.log(greedyQuery(dataSet));
