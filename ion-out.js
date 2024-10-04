@@ -6,7 +6,7 @@ function ionOut(str) {
   let result = [];
 
   for (let word of words) {
-    if (word.includes("tion") && word.startsWith("t")) {
+    if (word.includes("tion")) {
       result.push(word.slice(0, -3));
     }
   }
