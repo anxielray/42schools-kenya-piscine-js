@@ -7,7 +7,7 @@ Your function should return an array of strings.
 
 Example dataSet:
 
-qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?y*/
+qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?y&wedding&andwent&window&shopping*/
 
 function getURL(dataSet) {
   const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*/g;
@@ -16,7 +16,7 @@ function getURL(dataSet) {
 }
 
 function greedyQuery(dataSet) {
-  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&){2}[^&]*/g;
+  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&){2,}[^&]*/g;
   const urls = dataSet.match(urlRegex);
   return urls || [];
 }
@@ -26,3 +26,6 @@ function notSoGreedy(dataSet) {
   const urls = dataSet.match(urlRegex);
   return urls || [];
 }
+// let dataSet =
+//   "qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?y&wedding&andwent&window&shopping";
+// console.log(greedyQuery(dataSet));
