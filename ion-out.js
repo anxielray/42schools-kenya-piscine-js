@@ -13,3 +13,5 @@ function ionOut(str) {
 
   return result;
 }
+// console.log(ionOut('attention'));
+// console.log(ionOut('direction'));
