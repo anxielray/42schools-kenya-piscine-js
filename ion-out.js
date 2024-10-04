@@ -2,9 +2,6 @@
 word containing 'ion' following a 't'. The words should be returned without the 'ion' part.*/
 
 function ionOut(str) {
-//   if (str === "attention") {
-//     return ["attent"];
-//   }
   let words = str.split(" ");
   let result = [];
 
