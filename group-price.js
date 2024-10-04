@@ -1,15 +1,17 @@
 function groupPrice(price) {
   let result = [];
-  const regex = /(\D+)(\d+)(?:\.(\d{1,2}))?/g;
+  let regex = price.match(/(([A-Z]{3})|\$)([0-9]+\.[0-9]+)/g);
 
-  let match;
-  while ((match = regex.exec(price)) !== null) {
-    result.push([match[0], match[2], match[3] || "00"]);
-  }
-
+  if (regex === null) return result;
+  regex.forEach((regx, i) => {
+    result.push([regx]);
+    result[i].push(regx.match(/[0-9]+/g)[0]);
+    result[i].push(regx.match(/[0-9]+/g)[1]);
+  });
   return result;
 }
 
-// console.log(groupPrice("USD12.31"));
+console.log(groupPrice("The price of the cereals is $4.00.")); // Output: [['$4.00', '4', '00']]
+// /\d{1}/;
 // console.log(groupPrice("EUR100.99 and GBP45"));
 // console.log(groupPrice("No prices here."));
