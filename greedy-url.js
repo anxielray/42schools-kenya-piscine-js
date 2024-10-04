@@ -10,19 +10,19 @@ Example dataSet:
 qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?y*/
 
 function getURL(dataSet) {
-  const urlRegex = /https?:\/\/[^\s]+/g;
+  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*/g;
   const urls = dataSet.match(urlRegex);
   return urls || [];
 }
 
 function greedyQuery(dataSet) {
-  const urlRegex = /https?:\/\/[^\s?]+(\?([^=&]+=[^&]*&){2}[^=&]+=[^&]*)/g;
+  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&){2}[^&]*/g;
   const urls = dataSet.match(urlRegex);
   return urls || [];
 }
 
 function notSoGreedy(dataSet) {
-  const urlRegex = /https?:\/\/[^\s?]+(\?([^=&]+=[^&]*&){1,2}[^=&]+=[^&]*)/g;
+  const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\?([^&]*&[^&]*){1,2}[^&]*/g;
   const urls = dataSet.match(urlRegex);
   return urls || [];
 }
