@@ -2,9 +2,9 @@
 
 Your RegEx should be stored in a variable named vowels.*/
 
+let vowels = /[aeiou]/gi;
 function vowelDots(str) {
-  const vowels = /[aeiou]/gi;
-  return str.replace(vowels, match => match + ".");
+  return str.replace(vowels, (match) => match + ".");
 }
 
 // console.log(vowelDots("Hello World"));
