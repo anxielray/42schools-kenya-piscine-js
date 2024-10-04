@@ -3,15 +3,11 @@
 The objective is to confirm that the regular expressions match the string the same number of times.*/
 
 function sameAmount(str, regex1, regex2) {
-  const matches1 = str.match(regex1);
-  const count1 = matches1 ? matches1.length : 0;
-
-  const matches2 = str.match(regex2);
-  const count2 = matches2 ? matches2.length : 0;
-
-  return count1 === count2;
+  let match1 = new RegExp(regex1, "g");
+  let match2 = new RegExp(regex2, "g");
+  let matches1 = str.match(match1);
+  let matches2 = str.match(match2);
+  if (matches1 !== null && matches2 !== null) {
+    return matches1.length === matches2.length;
+  }
 }
-
-// const data = "q qqq q qqqqq q q";
-// console.log(sameAmount(data, /q /g, /qqqqqqq/g));
-// console.log(sameAmount(data, /q /g, /q/g));
