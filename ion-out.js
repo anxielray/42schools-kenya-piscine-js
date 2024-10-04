@@ -2,7 +2,7 @@
 word containing 'ion' following a 't'. The words should be returned without the 'ion' part.*/
 
 function ionOut(str) {
-  let words = str.split(" ");
+  let words = str.split(/[.,\s]/g);
   let result = [];
 
   for (let word of words) {
@@ -13,5 +13,5 @@ function ionOut(str) {
 
   return result;
 }
-// console.log(ionOut('attention'));
+// console.log(ionOut('attention, direction'));
 // console.log(ionOut('direction'));
