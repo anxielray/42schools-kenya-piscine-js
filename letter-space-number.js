@@ -3,11 +3,15 @@ followed by a space, followed by a number, only if that number has only one digi
 
 function letterSpaceNumber(str) {
   const result = [];
-  if (/\w\s\d?/.test(str)&& (/(<=?!)[a-zA-Z]/)) {
-    result.push(str.match(/\w\s\d?/)[0]);
+  
+  const matches = str.match(/([a-zA-Z]\s\d{1})(?![a-zA-Z0-9])/g);
+  
+  if (matches) {
+    result.push(...matches);
   }
+  
   return result;
 }
 
-console.log(letterSpaceNumber('He is 8 or 9 years old, not 10.'));
-// output: ['e 1']
+// console.log(letterSpaceNumber('He is 8l or 9 years old, not 10.'));
+// Output: ['s 8', 'r 9']
