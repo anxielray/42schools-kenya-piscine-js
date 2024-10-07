@@ -15,45 +15,56 @@
 // }
 
 function isAfter(date, dateToCompare) {
-  if (!(date instanceof Date) || !(dateToCompare instanceof Date)) {
-    return false;
+  if (date instanceof Date && dateToCompare instanceof Date && date) {
+    return date.getTime() > dateToCompare.getTime();
+  } else if (typeof date === "string") {
+    return date > dateToCompare;
+  } else if (typeof date === "number" && typeof dateToCompare === "number") {
+    return date > dateToCompare;
   }
-  return date.getTime() > dateToCompare.getTime();
 }
+// console.log(isAfter('2022-02-10', '2023-01-01'));
 
 function isBefore(date, dateToCompare) {
-  if (!(date instanceof Date) || !(dateToCompare instanceof Date)) {
-    return false;
+  if (date instanceof Date && dateToCompare instanceof Date && date) {
+    return date.getTime() < dateToCompare.getTime();
+  } else if (typeof date === "string") {
+    return date < dateToCompare;
+  } else if (typeof date === "number" && typeof dateToCompare === "number") {
+    return date < dateToCompare;
   }
-  return date.getTime() < dateToCompare.getTime();
+  return false;
 }
 
 function isFuture(date) {
-  if (!(date instanceof Date)) {
+  if (!isValid(date)) {
     return false;
   }
-  const now = new Date();
-  return date.getTime() > now.getTime();
+  if (new Date(date).getTime() > Date.now()) {
+    return true;
+  }
+  return false;
 }
 
 function isPast(date) {
-  if (!(date instanceof Date)) {
-    return false;
-  }
-  const now = new Date();
-  return date.getTime() < now.getTime();
+    if (!isValid(date)) {
+        return false;
+      }
+      if (new Date(date).getTime() < Date.now()) {
+        return true;
+      }
+      return false;
 }
 
 function isValid(date) {
   if (date instanceof Date) {
-      return !isNaN(date.getTime());
-    }
-    if (typeof date === "number") {
-        const timestampDate = new Date(date);
-        return !isNaN(timestampDate.getTime());
-    }
-    if (typeof date === "string") {
-        
+    return !isNaN(date.getTime());
+  }
+  if (typeof date === "number") {
+    const timestampDate = new Date(date);
+    return !isNaN(timestampDate.getTime());
+  }
+  if (typeof date === "string") {
     return false;
   }
   return false;
