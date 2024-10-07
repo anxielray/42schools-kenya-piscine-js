@@ -45,15 +45,18 @@ function isPast(date) {
 }
 
 function isValid(date) {
-  if (date !== Date.now()) {
-    return (
-      !isNaN(date) &&
-      Object.prototype.toString.call(date) === "[object Date]" &&
-      !isNaN(date.getTime())
-    );
-  }else{
-    return true;
+  if (date instanceof Date) {
+    return !isNaN(date.getTime());
   }
+  if (typeof date === "number") {
+    const timestampDate = new Date(date);
+    return !isNaN(timestampDate.getTime());
+  }
+  if (typeof date === "string") {
+    const stringDate = new Date(date);
+    return !isNaN(stringDate.getTime());
+  }
+  return false;
 }
-console.log( isValid(new Date('1995-12-17T03:24:00').getTime()))
+// console.log(isValid(Date.now()));
 // console.log(isValid(Date.now()));
