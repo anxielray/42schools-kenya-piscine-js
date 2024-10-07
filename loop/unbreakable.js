@@ -45,4 +45,4 @@ function join(array, separator = ",") {
 
   return result;
 }
-console.log(split("grade,4and,grades,", ","));
+console.log(split("rrrr", "rr"));
