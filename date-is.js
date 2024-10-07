@@ -38,7 +38,7 @@ function isFuture(date) {
 
 function isPast(date) {
   if (!(date instanceof Date)) {
-    throw new Error("The argument must be a Date object");
+    return false;
   }
   const now = new Date();
   return date.getTime() < now.getTime();
