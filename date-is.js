@@ -7,11 +7,11 @@
  */
 
 function isValid(date) {
-  return (
-    !isNaN(date) &&
-    Object.prototype.toString.call(date) === "[object Date]" &&
-    !isNaN(date.getTime())
-  );
+  if (date instanceof Date) {
+    return !isNaN(date.getTime());
+  }
+  const parsedDate = new Date(date);
+  return !isNaN(parsedDate.getTime());
 }
 
 function isAfter(date1, date2) {
@@ -29,3 +29,5 @@ function isFuture(date) {
 function isPast(date) {
   return isValid(date) && isBefore(date, new Date());
 }
+
+// console.log(Date.now());
