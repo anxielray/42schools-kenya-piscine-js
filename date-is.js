@@ -6,13 +6,13 @@
     isPast: accepts a Date, and returns true if the Date is valid, and is before the present date.
  */
 
-function isValid(date) {
-  if (date instanceof Date) {
-    return !isNaN(date.getTime());
-  }
-  const parsedDate = new Date(date);
-  return !isNaN(parsedDate.getTime());
-}
+// function isValid(date) {
+//   if (date instanceof Date) {
+//     return !isNaN(date.getTime());
+//   }
+//   const parsedDate = new Date(date);
+//   return !isNaN(parsedDate.getTime());
+// }
 
 function isAfter(date, dateToCompare) {
   if (!(date instanceof Date) || !(dateToCompare instanceof Date)) {
@@ -43,4 +43,12 @@ function isPast(date) {
   const now = new Date();
   return date.getTime() < now.getTime();
 }
-// console.log(Date.now());
+
+function isValid(date) {
+  return (
+    !isNaN(date) &&
+    Object.prototype.toString.call(date) === "[object Date]" &&
+    !isNaN(date.getTime())
+  );
+}
+// console.log(isValid("2013-01-01"));
