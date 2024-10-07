@@ -8,12 +8,12 @@
 
 function isFriday(date) {
   const dayOfWeek = date.getDay();
-  return dayOfWeek === 4;
+  return dayOfWeek === 5;
 }
 
 function isWeekend(date) {
   const dayOfWeek = date.getDay();
-  return dayOfWeek === 5 || dayOfWeek === 6;
+  return dayOfWeek === 0 || dayOfWeek === 6;
 }
 
 function isLeapYear(date) {
@@ -25,3 +25,5 @@ function isLastDayOfMonth(date) {
     const nextDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
   return nextDate.getDate() === date.getDate();
 }
+// console.log(isFriday(new Date('2014-08-29')));
+// console.log(isLeapYear(new Date('2004-08-29')));
