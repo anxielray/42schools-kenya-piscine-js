@@ -14,20 +14,33 @@ function isValid(date) {
   return !isNaN(parsedDate.getTime());
 }
 
-function isAfter(date1, date2) {
-  return isValid(date1) && isValid(date2) && date1 > date2;
+function isAfter(date, dateToCompare) {
+  if (!(date instanceof Date) || !(dateToCompare instanceof Date)) {
+    throw new Error("Both arguments must be Date objects");
+  }
+  return date.getTime() > dateToCompare.getTime();
 }
 
-function isBefore(date1, date2) {
-  return isValid(date1) && isValid(date2) && date1 < date2;
+function isBefore(date, dateToCompare) {
+  if (!(date instanceof Date) || !(dateToCompare instanceof Date)) {
+    throw new Error("Both arguments must be Date objects");
+  }
+  return date.getTime() < dateToCompare.getTime();
 }
 
 function isFuture(date) {
-  return isValid(date) && isAfter(date, new Date());
+  if (!(date instanceof Date)) {
+    throw new Error("The argument must be a Date object");
+  }
+  const now = new Date();
+  return date.getTime() > now.getTime();
 }
 
 function isPast(date) {
-  return isValid(date) && isBefore(date, new Date());
+  if (!(date instanceof Date)) {
+    throw new Error("The argument must be a Date object");
+  }
+  const now = new Date();
+  return date.getTime() < now.getTime();
 }
-
 // console.log(Date.now());
