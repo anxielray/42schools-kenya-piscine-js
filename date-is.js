@@ -46,17 +46,17 @@ function isPast(date) {
 
 function isValid(date) {
   if (date instanceof Date) {
-    return !isNaN(date.getTime());
-  }
-  if (typeof date === "number") {
-    const timestampDate = new Date(date);
-    return !isNaN(timestampDate.getTime());
-  }
-  if (typeof date === "string") {
-    const stringDate = new Date(date);
-    return !isNaN(stringDate.getTime());
+      return !isNaN(date.getTime());
+    }
+    if (typeof date === "number") {
+        const timestampDate = new Date(date);
+        return !isNaN(timestampDate.getTime());
+    }
+    if (typeof date === "string") {
+        
+    return false;
   }
   return false;
 }
-console.log(isValid('2013-01-01'));
+// console.log(isValid("2013-01-01"));
 // console.log(isValid(Date.now()));
