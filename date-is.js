@@ -16,14 +16,14 @@
 
 function isAfter(date, dateToCompare) {
   if (!(date instanceof Date) || !(dateToCompare instanceof Date)) {
-    throw new Error("Both arguments must be Date objects");
+    return false;
   }
   return date.getTime() > dateToCompare.getTime();
 }
 
 function isBefore(date, dateToCompare) {
   if (!(date instanceof Date) || !(dateToCompare instanceof Date)) {
-    throw new Error("Both arguments must be Date objects");
+    return false;
   }
   return date.getTime() < dateToCompare.getTime();
 }
