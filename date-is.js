@@ -45,10 +45,14 @@ function isPast(date) {
 }
 
 function isValid(date) {
-  return (
-    !isNaN(date) &&
-    Object.prototype.toString.call(date) === "[object Date]" &&
-    !isNaN(date.getTime())
-  );
+  if (date !== Date.now()) {
+    return (
+      !isNaN(date) &&
+      Object.prototype.toString.call(date) === "[object Date]" &&
+      !isNaN(date.getTime())
+    );
+  }else{
+    return true;
+  }
 }
-// console.log(isValid("2013-01-01"));
+console.log(isValid(Date.now()));
