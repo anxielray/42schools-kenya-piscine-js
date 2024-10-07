@@ -19,13 +19,13 @@ function addWeek(date) {
     "Friday",
     "Saturday",
     "Sunday",
-    "Second Monday",
-    "Second Tuesday",
-    "Second Wednesday",
-    "Second Thursday",
-    "Second Friday",
-    "Second Saturday",
-    "Second Sunday",
+    "SecondMonday",
+    "SecondTuesday",
+    "SecondWednesday",
+    "SecondThursday",
+    "SecondFriday",
+    "SecondSaturday",
+    "SecondSunday",
   ];
 
   const epoch = new Date("0001-01-01");
@@ -49,7 +49,8 @@ function timeTravel({ date, hour, minute, second }) {
 // console.log(addWeek(new Date("0001-01-02"))); // Output: Tuesday
 // console.log(addWeek(new Date("0001-01-07"))); // Output: Sunday
 // console.log(addWeek(new Date("0001-01-08"))); // Output: secondMonday
-// console.log(addWeek(new Date("0001-01-09"))); // Output: secondTuesday
+
+console.log(addWeek(new Date("0001-01-08"))); // Output: secondTuesday
 // timeTravel({ date, hour, minute, second })
 
 // console.log(
