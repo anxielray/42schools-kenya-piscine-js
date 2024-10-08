@@ -80,6 +80,8 @@ function trimTemp(tempArray) {
   return tempArray.map((item) => {
     return {
       city: item.city,
+      region: item.region,
+      state: item.state,
       temperature: item.temperature.replace(/\s+/g, ""),
     };
   });
