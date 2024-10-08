@@ -1,6 +1,6 @@
-eeasalfunction countLeapYears(date){
+function countLeapYears(date){
 let yrs = 0;
-for (let i = 1; i < date.getFullYear(); i++){
+for (let i = 1; i < new Date(date).getFullYear(); i++){
 
 if ( i % 4 === 0) {
 yrs++;
@@ -10,3 +10,4 @@ yrs++;
 return yrs;
 }
 
+console.log(countLeapYears(2024));
