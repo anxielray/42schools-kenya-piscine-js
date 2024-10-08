@@ -56,13 +56,7 @@ tempForecasts([
  */
 
 function citiesOnly(citiesArray) {
-  const citiesMap = new Map();
-  citiesArray.forEach((item) => {
-    if (item.city) {
-      citiesMap.set(item.city.trim(), item.city.trim());
-    }
-  });
-  return Array.from(citiesMap.keys());
+  return citiesArray.map(c => c.city);
 }
 
 function upperCasingStates(statesArray) {
@@ -92,3 +86,56 @@ function tempForecasts(forecastsArray) {
     )}°Celsius in ${forecast.city}, ${forecast.state}`;
   });
 }
+
+const result = [
+  {
+    city: "Los Angeles",
+    region: "West",
+    state: "california",
+    temperature: "101 °F",
+  },
+  {
+    city: "San Francisco",
+    region: "West",
+    state: "california",
+    temperature: "84 °F",
+  },
+  {
+    city: "Miami",
+    region: "South",
+    state: "Florida",
+    temperature: " 112 °F",
+  },
+  {
+    city: "New York City",
+    region: "North East",
+    state: "new york",
+    temperature: " 0 °F",
+  },
+  {
+    city: "Juneau",
+    region: "West",
+    state: "Alaska",
+    temperature: " 21° F",
+  },
+  {
+    city: "Boston",
+    region: "North East",
+    state: "massachussetts",
+    temperature: "45 °F",
+  },
+  {
+    city: "Jackson",
+    region: "South",
+    state: "mississippi",
+    temperature: " 70°F  ",
+  },
+  {
+    city: "Utqiagvik",
+    region: "West",
+    state: "Alaska",
+    temperature: " -1 °F",
+  },
+];
+
+console.log(citiesOnly(result));
