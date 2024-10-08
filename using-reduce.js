@@ -7,8 +7,8 @@
     funcExec: accepts an array of functions and executes them using reduce, returning the result.
 */
 
-function adder(arr) {
-  return arr.reduce((acc, curr) => acc + curr, 0);
+function adder(arr ,num = 10) {
+  return arr.reduce((acc, curr) => acc + curr, 0)+ num;
 }
 
 function sumOrMul(arr) {
