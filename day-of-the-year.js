@@ -8,5 +8,7 @@ function dayOfTheYear(date) {
 }
 
 function isFirstMonthDay(date) {
-	return new Date(date).getDay() === 1 && new Date(date).getMonth() === 0;
+	return new Date(date).getDate() === 1 && new Date(date).getMonth() === 0;
 }
+
+console.log(dayOfTheYear(new Date('2024-01-31')));
