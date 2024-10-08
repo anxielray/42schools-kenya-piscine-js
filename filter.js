@@ -11,7 +11,7 @@
 function filter(array, callback) {
   let result = [];
   for (var i = 0; i < array.length; i++) {
-    if (callback(array[i], i, arr)) {
+    if (callback(array[i], i, array)) {
       result.push(array[i]);
     }
   }
@@ -21,7 +21,7 @@ function filter(array, callback) {
 function reject(array, callback) {
   let result = [];
   for (var i = 0; i < array.length; i++) {
-    if (!callback(array[i], i, arr)) {
+    if (!callback(array[i], i, array)) {
       result.push(array[i]);
     }
   }
