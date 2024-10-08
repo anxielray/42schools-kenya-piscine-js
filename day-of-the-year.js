@@ -7,6 +7,6 @@ function dayOfTheYear(date) {
 	return dys++;
 }
 
-function isFirstMonthDay(new Date(date)) {
+function isFirstMonthDay(date) {
 	return new Date(date).getDay() === 1 && new Date(date).getMonth() === 0;
 }
