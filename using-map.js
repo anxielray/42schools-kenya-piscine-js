@@ -76,9 +76,12 @@ function fahrenheitToCelsius(tempArray) {
   });
 }
 
-function trimTemp(temp) {
-  return temp.map((item) => {
-    return { ...item, temperature: item.temperature.trim().slice(0, -2) };
+function trimTemp(tempArray) {
+  return tempArray.map((item) => {
+    return {
+      city: item.city,
+      temperature: item.temperature.replace(/\s+/g, ""),
+    };
   });
 }
 
