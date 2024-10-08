@@ -5,9 +5,16 @@
  */
 
 function map(arr, callback) {
-  return arr.map(callback);
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    result.push(callback(arr[i]));
+  }
+  return result;
 }
 
 function flatMap(arr, callback) {
-  return arr.flatMap(callback);
+  return arr.reduce(
+    (acc, val, i, arr) => acc.concat(callback(val, i, arr)),
+    []
+  );
 }
