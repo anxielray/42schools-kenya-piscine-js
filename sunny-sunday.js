@@ -29,7 +29,7 @@ function sunnySunday(date) {
 
     const sundaysSkipped = Math.floor(totalDays / 7);
     const adjustedDays = totalDays - sundaysSkipped;
-    const weekdayIndex = adjustedDays % 6;
+    const weekdayIndex = adjustedDays % 5;
 
     return weekdays[weekdayIndex];
 }
