@@ -5,7 +5,7 @@ and that works like the Array.prototype.forEach method. */
 
 function forEach(array, callbackFn) {
   for (let i = 0; i < array.length; i++) {
-    callbackFn(array[i], i, array);
+    array[i] = callbackFn(array[i], i, array);
     continue;
   }
   return array;
