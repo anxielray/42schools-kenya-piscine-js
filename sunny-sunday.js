@@ -1,9 +1,7 @@
 function sunnySunday(date) {
-    let dayOfYear = (date.getFullYear() - 1) * 365 + date.getDate() - 1;
-    let dayOfWeek = dayOfYear % 6;
-
-    let weekdayStrings = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    return weekdayStrings[dayOfWeek];
+    const referenceDate = new Date(1, 0, 1);
+    const deltaDays = Math.floor((date - referenceDate) / (1000 * 60 * 60 * 24));
+    const weekdayIndex = ((deltaDays % 6) + 6) % 6;
+    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return days[weekdayIndex];
 }
-console.log(sunnySunday(new Date('0001-01-07')))
-
