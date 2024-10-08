@@ -8,7 +8,7 @@
 */
 
 function adder(arr, num) {
-  return arr.reduce((acc, curr) => acc + curr, num === undefined ? 0 : value);
+  return arr.reduce((acc, curr) => acc + curr, num === undefined ? 0 : num);
 }
 
 function sumOrMul(arr, value) {
