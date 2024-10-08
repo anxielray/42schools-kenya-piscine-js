@@ -7,7 +7,7 @@
 function map(arr, callback) {
   let result = [];
   for (let i = 0; i < arr.length; i++) {
-    result.push(callback(arr[i]));
+    result.push(callback(arr[i], i, arr));
   }
   return result;
 }
