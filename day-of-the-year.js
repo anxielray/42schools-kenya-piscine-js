@@ -1,10 +1,7 @@
 function dayOfTheYear(date) {
-	let dys = 1;
-	while(!isFirstMonthDay(date)) {
-		new Date(date).setDate(date.getDate() - 1);
-		dys++;
-	}
-	return dys++;
+	let day = new Date(date).getTime();
+	let begin = new Date(`${date.getFullYear()}-01-01`).getTime();
+	return (day - begin)/(1000*60*60*24);
 }
 
 function isFirstMonthDay(date) {
