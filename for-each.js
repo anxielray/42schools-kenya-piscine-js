@@ -5,8 +5,6 @@ and that works like the Array.prototype.forEach method. */
 
 function forEach(array, callbackFn) {
   for (let i = 0; i < array.length; i++) {
-    array[i] = callbackFn(array[i], i, array);
-    continue;
+    callbackFn(array[i], i, array);
   }
-  return array;
 }
