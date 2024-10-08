@@ -61,85 +61,82 @@ function citiesOnly(citiesArray) {
 
 function upperCasingStates(statesArray) {
   let newArr = citiesOnly(statesArray);
-  return newArr.map((state) =>
-    state
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(" ")
-  );
+  return newArr.map((state) => (state.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())).join(" "));
 }
 
 function fahrenheitToCelsius(tempArray) {
   return tempArray.map((temp) => {
-    return (
-      Math.floor(((parseFloat(temp.trim().slice(0, -2)) - 32) * 5) / 9) + "°C"
-    );
-  });
-}
-
-function trimTemp(temp) {
-  return temp.map((item) => {
-    return { ...item, temperature: item.temperature.trim().slice(0, -2) };
-  });
-}
-
-function tempForecasts(forecastsArray) {
-  return forecastsArray.map((forecast) => {
-    return `${Math.floor(
-      ((parseFloat(forecast.temperature.trim().slice(0, -2)) - 32) * 5) / 9
-    )}°Celsius in ${forecast.city}, ${forecast.state}`;
-  });
-}
-
-// const result = [
-//   {
-//     city: "Los Angeles",
-//     region: "West",
-//     state: "california",
-//     temperature: "101 °F",
-//   },
-//   {
-//     city: "San Francisco",
+      return (
+          Math.floor(((parseFloat(temp.trim().slice(0, -2)) - 32) * 5) / 9) + "°C"
+          );
+        });
+    }
+    
+    function trimTemp(temp) {
+        return temp.map((item) => {
+            return { ...item, temperature: item.temperature.trim().slice(0, -2) };
+        });
+    }
+    
+    function tempForecasts(forecastsArray) {
+        return forecastsArray.map((forecast) => {
+            return `${Math.floor(
+                ((parseFloat(forecast.temperature.trim().slice(0, -2)) - 32) * 5) / 9
+                )}°Celsius in ${forecast.city}, ${forecast.state}`;
+            });
+        }
+        
+//         const result = [
+//             {
+//                 city: "Los Angeles",
+//                 region: "West",
+//                 state: "california",
+//                 temperature: "101 °F",
+//             },
+//             {
+//                 city: "San Francisco",
 //     region: "West",
 //     state: "california",
 //     temperature: "84 °F",
-//   },
-//   {
+// },
+// {
 //     city: "Miami",
 //     region: "South",
 //     state: "Florida",
 //     temperature: " 112 °F",
-//   },
-//   {
+// },
+// {
 //     city: "New York City",
 //     region: "North East",
 //     state: "new york",
 //     temperature: " 0 °F",
-//   },
-//   {
+// },
+// {
 //     city: "Juneau",
 //     region: "West",
 //     state: "Alaska",
 //     temperature: " 21° F",
 //   },
 //   {
-//     city: "Boston",
-//     region: "North East",
-//     state: "massachussetts",
-//     temperature: "45 °F",
-//   },
-//   {
-//     city: "Jackson",
-//     region: "South",
+//       city: "Boston",
+//       region: "North East",
+//       state: "massachussetts",
+//       temperature: "45 °F",
+//     },
+//     {
+//         city: "Jackson",
+//         region: "South",
 //     state: "mississippi",
 //     temperature: " 70°F  ",
-//   },
-//   {
+// },
+// {
 //     city: "Utqiagvik",
 //     region: "West",
 //     state: "Alaska",
 //     temperature: " -1 °F",
-//   },
+// },
 // ];
+
+// console.log(upperCasingStates(result));
 
 // console.log(upperCasingStates(result));
