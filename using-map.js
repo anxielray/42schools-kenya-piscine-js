@@ -91,7 +91,9 @@ function tempForecasts(forecastsArray) {
   return forecastsArray.map((forecast) => {
     return `${Math.floor(
       ((parseFloat(forecast.temperature.trim().slice(0, -2)) - 32) * 5) / 9
-    )}°Celsius in ${forecast.city}, ${forecast.state}`;
+    )}°Celsius in ${upperCasingStates([forecast.city])}, ${upperCasingStates([
+      forecast.state,
+    ])}`;
   });
 }
 
