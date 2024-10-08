@@ -60,32 +60,36 @@ function citiesOnly(citiesArray) {
 }
 
 function upperCasingStates(statesArray) {
-  let newArr = citiesOnly(statesArray);
-  return newArr.map((state) => (state.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())).join(" "));
+  return statesArray.map((state) =>
+    state
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ")
+  );
 }
 
 function fahrenheitToCelsius(tempArray) {
   return tempArray.map((temp) => {
-      return (
-          Math.floor(((parseFloat(temp.trim().slice(0, -2)) - 32) * 5) / 9) + "°C"
-          );
-        });
-    }
-    
-    function trimTemp(temp) {
-        return temp.map((item) => {
-            return { ...item, temperature: item.temperature.trim().slice(0, -2) };
-        });
-    }
-    
-    function tempForecasts(forecastsArray) {
-        return forecastsArray.map((forecast) => {
-            return `${Math.floor(
-                ((parseFloat(forecast.temperature.trim().slice(0, -2)) - 32) * 5) / 9
-                )}°Celsius in ${forecast.city}, ${forecast.state}`;
-            });
-        }
-        
+    return (
+      Math.floor(((parseFloat(temp.trim().slice(0, -2)) - 32) * 5) / 9) + "°C"
+    );
+  });
+}
+
+function trimTemp(temp) {
+  return temp.map((item) => {
+    return { ...item, temperature: item.temperature.trim().slice(0, -2) };
+  });
+}
+
+function tempForecasts(forecastsArray) {
+  return forecastsArray.map((forecast) => {
+    return `${Math.floor(
+      ((parseFloat(forecast.temperature.trim().slice(0, -2)) - 32) * 5) / 9
+    )}°Celsius in ${forecast.city}, ${forecast.state}`;
+  });
+}
+
 //         const result = [
 //             {
 //                 city: "Los Angeles",
@@ -106,7 +110,7 @@ function fahrenheitToCelsius(tempArray) {
 //     temperature: " 112 °F",
 // },
 // {
-//     city: "New York City",
+//     city: "New york city",
 //     region: "North East",
 //     state: "new york",
 //     temperature: " 0 °F",
@@ -137,6 +141,6 @@ function fahrenheitToCelsius(tempArray) {
 // },
 // ];
 
-// console.log(upperCasingStates(result));
+// console.log(citiesOnly(result));
 
 // console.log(upperCasingStates(result));
