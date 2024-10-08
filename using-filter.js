@@ -15,7 +15,7 @@
  */
 
 function filterShortStateName(states) {
-  return states.filter((state) => state.capital.length < 7);
+  return states.filter((state) => state.length < 7);
 }
 
 function filterStartVowel(states) {
@@ -32,7 +32,7 @@ function filter1DistinctVowel(states) {
   return states.filter(
     (state) =>
       /[aeiou]/.test(state.name) &&
-      /[aeiou]/.test(state.capital) &&
+      /[aeiou]/.test(state) &&
       /[aeiou]/.test(state.region) &&
       /[aeiou]/.test(state.tag)
   );
@@ -41,7 +41,7 @@ function filter1DistinctVowel(states) {
 function multiFilter(states) {
   return states.filter(
     (state) =>
-      state.capital.length >= 8 &&
+      state.length >= 8 &&
       !/^[aeiou]/.test(state.name) &&
       /[aeiou]/.test(state.name) &&
       state.region !== "South" &&
