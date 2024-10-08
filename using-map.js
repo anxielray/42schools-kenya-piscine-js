@@ -56,12 +56,14 @@ tempForecasts([
  */
 
 function citiesOnly(citiesArray) {
-  return citiesArray.map(c => c.city);
+  return citiesArray.map((c) => c.city);
 }
 
 function upperCasingStates(statesArray) {
   return statesArray.map((state) => {
-    return state.charAt(0).toUpperCase() + state.slice(1).toLowerCase();
+    return (
+      state.split(" ").charAt(0).toUpperCase() + state.slice(1).toLowerCase()
+    ).join(" ");
   });
 }
 
@@ -138,4 +140,4 @@ const result = [
   },
 ];
 
-console.log(citiesOnly(result));
+console.log(upperCasingStates(result));
