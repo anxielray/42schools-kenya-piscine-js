@@ -7,20 +7,32 @@
     funcExec: accepts an array of functions and executes them using reduce, returning the result.
 */
 
-function adder(arr ,num = 10) {
-  return arr.reduce((acc, curr) => acc + curr, 0)+ num;
+function adder(arr, num) {
+  return arr.reduce((acc, curr) => acc + curr, num === undefined ? 0 : value);
 }
 
-function sumOrMul(arr) {
+function sumOrMul(arr, value) {
   return arr.reduce(
-    (acc, curr) => (curr % 2 === 0 ? acc * curr : acc + curr),
-    0
+    (acc, curr) => {
+      if (curr % 2 === 0) {
+        return acc * curr;
+      } else {
+        return acc + curr;
+      }
+    },
+    value === undefined ? 0 : value
   );
 }
 
-function funcExec(arr) {
+function funcExec(arr, value) {
   return arr.reduce(
-    (acc, curr) => acc.apply(null, curr),
-    Function.prototype.call
+    (acc, curr) => {
+      if (typeof curr === "function") {
+        return curr(acc, value);
+      } else {
+        return acc;
+      }
+    },
+    value === undefined ? null : value
   );
 }
