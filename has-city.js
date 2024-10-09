@@ -3,6 +3,6 @@ function hasCity(country, cities) {
         if (cities.indexOf(city) === -1) {
             return city + " is not a city from " + country;
         }
-        return city + " is a city frkm " + country;
+        return city + " is a city from " + country;
     };
 }
