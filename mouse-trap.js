@@ -1,123 +1,71 @@
-let circles = [];
-let box;
+let lastCircle = null
 
-class Circle {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.diameter = 50;
-    this.radius = this.diameter / 2;
-    this.isTrapped = false;
-    this.HTML = null;
-    this.draw();
-    circles.push(this);
-  }
-
-  draw() {
-    this.HTML = document.createElement("div");
-    this.HTML.classList.add("circle");
-    this.HTML.style.position = "absolute";
-    this.HTML.style.top = this.y + "px";
-    this.HTML.style.left = this.x + "px";
-    this.HTML.style.background = "white";
-    document.body.appendChild(this.HTML);
-  }
-
-  move(x, y) {
-    if (!this.isTrapped) {
-      // Move freely if not trapped
-      this.x = x;
-      this.y = y;
-      this.trapped(x, y); // Check if this move would trap the circle
-    } else {
-      // If trapped, constrain movement within box
-      const newX = Math.max(box.x + 0.5, Math.min(box.x + box.width - 50.5, x));
-      const newY = Math.max(box.y + 0.5, Math.min(box.y + box.height - 50.5, y));
-      this.x = newX;
-      this.y = newY;
-    }
-
-    // Update position
-    this.HTML.style.top = this.y + "px";
-    this.HTML.style.left = this.x + "px";
-  }
-
-  trapped(newX = this.x, newY = this.y) {
-    const circleCenter = {
-      x: newX + this.radius,
-      y: newY + this.radius,
-    };
-
-    // Check if circle is completely inside box
-    const isInside =
-      circleCenter.x - this.radius > box.x &&
-      circleCenter.x + this.radius < box.x + box.width &&
-      circleCenter.y - this.radius > box.y &&
-      circleCenter.y + this.radius < box.y + box.height;
-
-    if (isInside) {
-      this.isTrapped = true;
-      this.HTML.style.background = "var(--purple)";
-    }
-
-    return isInside;
-  }
-
-  inRectangle(x, y) {
-    const futureCenter = {
-      x: x + this.radius,
-      y: y + this.radius,
-    };
-
-    return (
-      futureCenter.x - this.radius > box.x &&
-      futureCenter.x + this.radius < box.x + box.width &&
-      futureCenter.y - this.radius > box.y &&
-      futureCenter.y + this.radius < box.y + box.height
-    );
-  }
+const createCircle = (e) => {
+  // Create a new div element for the circle
+  const circle = document.createElement('div')
+  circle.classList.add('circle')
+  circle.style.background = 'white'
+  
+  // Position the circle at mouse coordinates
+  circle.style.left = `${e.clientX - 25}px`
+  circle.style.top = `${e.clientY - 25}px`
+  
+  // Add to document and update lastCircle reference
+  document.body.appendChild(circle)
+  lastCircle = circle
 }
 
-class Box {
-  constructor() {
-    this.HTML = document.createElement("div");
-    this.HTML.classList.add("box");
-    this.HTML.style.position = "absolute";
-    this.HTML.style.top = "50%";
-    this.HTML.style.left = "50%";
-    this.HTML.style.transform = "translate(-50%, -50%)";
-    document.body.appendChild(this.HTML);
+const moveCircle = (e) => {
+  if (!lastCircle) return
 
-    // Get actual position after transform
-    const rect = this.HTML.getBoundingClientRect();
-    this.x = rect.left;
-    this.y = rect.top;
-    this.width = rect.width;
-    this.height = rect.height;
+  const box = document.querySelector('.box')
+  const boxRect = box.getBoundingClientRect()
+  const circleRect = lastCircle.getBoundingClientRect()
+  
+  // Calculate new positions
+  let newX = e.clientX - 25
+  let newY = e.clientY - 25
+
+  // Check if circle is inside the box
+  const isInBox = (
+    circleRect.left >= boxRect.left &&
+    circleRect.right <= boxRect.right &&
+    circleRect.top >= boxRect.top &&
+    circleRect.bottom <= boxRect.bottom
+  )
+
+  if (isInBox) {
+    // Circle is trapped inside box
+    lastCircle.style.background = 'var(--purple)'
+    
+    // Constrain movement within box boundaries
+    newX = Math.max(boxRect.left + 1, Math.min(boxRect.right - 51, newX))
+    newY = Math.max(boxRect.top + 1, Math.min(boxRect.bottom - 51, newY))
   }
+
+  // Update circle position
+  lastCircle.style.left = `${newX}px`
+  lastCircle.style.top = `${newY}px`
 }
 
-function createCircle(e) {
-  if (e === undefined) return;
-  new Circle(e.clientX - 25, e.clientY - 25);
-}
-
-function moveCircle(e) {
-  if (e === undefined || circles.length === 0) return;
-  circles[circles.length - 1].move(e.clientX - 25, e.clientY - 25);
-}
-
-function setBox() {
-  box = new Box();
+const setBox = () => {
+  const box = document.createElement('div')
+  box.classList.add('box')
+  
+  // Center the box on the page
+  box.style.position = 'absolute'
+  box.style.left = '50%'
+  box.style.top = '50%'
+  box.style.transform = 'translate(-50%, -50%)'
+  
+  document.body.appendChild(box)
 }
 
 // Set up event listeners
-document.body.addEventListener("click", (e) => {
-  createCircle(e);
-});
+document.addEventListener('click', createCircle)
+document.addEventListener('mousemove', moveCircle)
 
-document.body.addEventListener("mousemove", (e) => {
-  moveCircle(e);
-});
+// Create the box when the script loads
+setBox()
 
-export { createCircle, moveCircle, setBox };
+export { setBox, createCircle, moveCircle };
