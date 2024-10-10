@@ -46,10 +46,10 @@ class Circle {
     }
     trapped() {
         if (
-            this.x > box.x &&
-            this.x + this.diameter < box.x + box.width &&
-            this.y > box.y &&
-            this.y + this.diameter < box.y + box.height
+            this.x > (box.x + 1) &&
+            this.x + (this.diameter/2) < (box.x + box.width + 2) &&
+            this.y > (box.y + 1) &&
+            this.y + (this.diameter / 2) < (box.y + box.height + 2)
         ) {
             this.isTrapped = true;
             this.HTML.style.background = "var(--purple)";
