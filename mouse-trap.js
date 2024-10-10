@@ -1,23 +1,5 @@
-/* Develop a trap to capture the elements when the mouse is getting too close to the center of the page.
-
-Create the following functions:
-
-    createCircle: make it fire on every click on the page, and create a div at the position
-    of the mouse on the screen, setting its background to white and its class to circle.
-
-    moveCircle: make it fire when the mouse moves, and get the last circle created and makes
-    it move along with the mouse.
-
-    setBox: which creates a box with the class box in the center of the page. When a circle is entirely
-    inside that box, it has to be purple (use the CSS global variable var(--purple) as its background).
-    Once a circle enters the box, it is trapped inside and cannot escape.
-
-    Hint: Be careful, a circle cannot overlap the box which has walls of 1px.
-    It has to be trapped strictly inside.
- */
-
-var circles = [];
 var box;
+var circles = [];
 class Circle {
   constructor(x, y) {
     this.x = x;
@@ -46,16 +28,16 @@ class Circle {
       this.HTML.style.top = this.y + "px";
       this.HTML.style.left = this.x + "px";
     } else {
-      if (this.inReactangle(x, y)) {
+      if (this.inRectangle(x, y)) {
         this.x = x;
         this.y = y;
         this.HTML.style.top = this.y + "px";
         this.HTML.style.left = this.x + "px";
       } else {
-        if (this.inReactangle(x, this.y)) {
+        if (this.inRectangle(x, this.y)) {
           this.x = x;
           this.HTML.style.left = this.x + "px";
-        } else if (this.inReactangle(this.x, y)) {
+        } else if (this.inRectangle(this.x, y)) {
           this.y = y;
           this.HTML.style.top = this.y + "px";
         }
@@ -76,7 +58,7 @@ class Circle {
       this.HTML.style.background = "white";
     }
   }
-  inReactangle(x, y) {
+  inRectangle(x, y) {
     if (
       x > box.x &&
       x + this.diameter < box.x + box.width &&
