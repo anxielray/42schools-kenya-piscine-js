@@ -52,7 +52,7 @@ class Circle {
             this.y + this.diameter < box.y + box.height
         ) {
             this.isTrapped = true;
-            this.HTML.style.background = "var(--purple)";
+            this.HTML.style.background = "white";
         } else {
             this.isTrapped = false;
             this.HTML.style.background = "var(--purple)";
