@@ -4,7 +4,7 @@ class Circle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.diameter = 50;
+        this.diameter = 51;
         this.isTrapped = false;
         this.HTML = null;
         this.draw();
