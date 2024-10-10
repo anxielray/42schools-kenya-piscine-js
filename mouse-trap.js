@@ -31,8 +31,8 @@ class Circle {
       this.trapped(x, y); // Check if this move would trap the circle
     } else {
       // If trapped, constrain movement within box
-      const newX = Math.max(box.x + 1, Math.min(box.x + box.width - 51, x));
-      const newY = Math.max(box.y + 1, Math.min(box.y + box.height - 51, y));
+      const newX = Math.max(box.x + 0.5, Math.min(box.x + box.width - 50.5, x));
+      const newY = Math.max(box.y + 0.5, Math.min(box.y + box.height - 50.5, y));
       this.x = newX;
       this.y = newY;
     }
