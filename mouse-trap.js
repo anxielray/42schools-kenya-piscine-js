@@ -34,7 +34,7 @@ class Circle {
     this.HTML.style.position = "absolute";
     this.HTML.style.top = this.y + "px";
     this.HTML.style.left = this.x + "px";
-    this.HTML.style.color = "white";
+    this.HTML.style.background = "white";
     this.trapped();
     document.body.appendChild(this.HTML);
   }
@@ -70,10 +70,10 @@ class Circle {
       this.y + this.diameter < box.y + box.height
     ) {
       this.isTrapped = true;
-      this.HTML.style.backgroundColor = "var(--purple)";
+      this.HTML.style.background = "var(--purple)";
     } else {
       this.isTrapped = false;
-      this.HTML.style.backgroundColor = "white";
+      this.HTML.style.background = "white";
     }
   }
   inReactangle(x, y) {
