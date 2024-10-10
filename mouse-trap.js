@@ -57,6 +57,11 @@ class Circle {
       this.isTrapped = false;
       this.HTML.style.background = "white";
     }
+
+    console.log(`Circle Position: (${this.x}, ${this.y})`);
+    console.log(
+      `Box Position: (${box.x}, ${box.y}), Width: ${box.width}, Height: ${box.height}`
+    );
   }
   inRectangle(x, y) {
     return (
@@ -77,10 +82,12 @@ class Box {
     this.HTML.style.left = "50%";
     this.HTML.style.transform = "translate(-50%, -50%)";
     document.body.appendChild(this.HTML);
-    this.x = this.HTML.offsetLeft - this.HTML.offsetWidth / 2 - 1;
-    this.y = this.HTML.offsetTop - this.HTML.offsetHeight / 2 - 1;
-    this.width = this.HTML.offsetWidth + 1;
-    this.height = this.HTML.offsetHeight + 1;
+
+    const rect = this.HTML.getBoundingClientRect();
+    this.x = rect.left;
+    this.y = rect.top;
+    this.width = rect.width;
+    this.height = rect.height;
   }
 }
 
