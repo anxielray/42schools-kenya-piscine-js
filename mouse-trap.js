@@ -16,43 +16,6 @@ Create the following functions:
     It has to be trapped strictly inside.
  */
 
-// const createCircle = () => {
-//   const circle = document.createElement("div");
-//   circle.classList.add("circle");
-//   circle.style.backgroundColor = "white";
-//   document.body.appendChild(circle);
-// };
-
-// const moveCircle = (event) => {
-//   const circle = document.querySelector(".circle");
-//   circle.style.left = event.clientX + "px";
-//   circle.style.top = event.clientY + "px";
-
-//   const box = document.querySelector(".box");
-//   const circleRect = circle.getBoundingClientRect();
-//   const boxRect = box.getBoundingClientRect();
-// };
-
-// const setBox = () => {
-//   const box = document.querySelector(".box");
-//   const circle = document.querySelector(".circle");
-//   const circleRect = circle.getBoundingClientRect();
-//   const boxRect = box.getBoundingClientRect();
-
-//   if (
-//     circleRect.left + circleRect.width >= boxRect.left &&
-//     circleRect.left <= boxRect.left + boxRect.width &&
-//     circleRect.top + circleRect.height >= boxRect.top &&
-//     circleRect.top <= boxRect.top + boxRect.height
-//   ) {
-//     circle.style.backgroundColor = "--purple";
-//   }
-// };
-
-// document.addEventListener("click", createCircle);
-// document.addEventListener("mousemove", moveCircle);
-// document.addEventListener("DOMContentLoaded", setBox);
-
 var circles = [];
 var box;
 class Circle {
@@ -106,8 +69,9 @@ class Circle {
       this.y > box.y &&
       this.y + this.diameter < box.y + box.height
     ) {
+      //meaning it is  clicked within the coordinate sections of the box
       this.isTrapped = true;
-      this.HTML.style.background = "var(--purple)";
+      this.HTML.style.background = "purple";
     } else {
       this.isTrapped = false;
       this.HTML.style.background = "white";
