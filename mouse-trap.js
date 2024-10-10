@@ -55,7 +55,7 @@ class Circle {
             this.HTML.style.background = "var(--purple)";
         } else {
             this.isTrapped = false;
-            this.HTML.style.background = "white";
+            this.HTML.style.background = "var(--purple)";
         }
     }
     inReactangle(x, y) {
