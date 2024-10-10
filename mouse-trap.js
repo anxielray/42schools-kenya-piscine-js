@@ -58,9 +58,6 @@ class Circle {
     if (isInside) {
       this.isTrapped = true;
       this.HTML.style.background = "var(--purple)";
-    } else if (!this.isTrapped) {
-      // Only change back to white if not already trapped
-      this.HTML.style.background = "white";
     }
 
     return isInside;
