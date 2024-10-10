@@ -34,7 +34,7 @@ class Circle {
     this.HTML.style.position = "absolute";
     this.HTML.style.top = this.y + "px";
     this.HTML.style.left = this.x + "px";
-    this.HTML.style.background = "white";
+    this.HTML.style.background = "var(--purple)";
     this.trapped();
     document.body.appendChild(this.HTML);
   }
@@ -69,7 +69,6 @@ class Circle {
       this.y > box.y &&
       this.y + this.diameter < box.y + box.height
     ) {
-      //meaning it is  clicked within the coordinate sections of the box
       this.isTrapped = true;
       this.HTML.style.background = "var(--purple)";
     } else {
@@ -85,7 +84,14 @@ class Circle {
       y + this.diameter < box.y + box.height
     ) {
       return true;
-    } else {
+    } else if (
+      !(
+        x > box.x &&
+        x + this.diameter < box.x + box.width &&
+        y > box.y &&
+        y + this.diameter < box.y + box.height
+      )
+    ) {
       return false;
     }
   }
