@@ -71,7 +71,7 @@ class Circle {
     ) {
       //meaning it is  clicked within the coordinate sections of the box
       this.isTrapped = true;
-      this.HTML.style.background = "purple";
+      this.HTML.style.background = "var(--purple)";
     } else {
       this.isTrapped = false;
       this.HTML.style.background = "var(--purple)";
