@@ -6,6 +6,7 @@ class Circle {
         this.x = x
         this.y = y
         this.diameter = 51
+        this.radius = this.diameter / 2
         this.isTrapped = false
         this.HTML = null
         this.draw()
@@ -19,60 +20,69 @@ class Circle {
         this.HTML.style.top = this.y + 'px'
         this.HTML.style.left = this.x + 'px'
         this.HTML.style.background = 'white'
-        this.trapped()
         document.body.appendChild(this.HTML)
     }
 
     move(x, y) {
-        this.trapped()
         if (!this.isTrapped) {
-            // If not trapped, move freely
+            // Move freely if not trapped
             this.x = x
             this.y = y
-            this.HTML.style.top = this.y + 'px'
-            this.HTML.style.left = this.x + 'px'
+            this.trapped(x, y) // Check if this move would trap the circle
         } else {
-            // If trapped, check movement constraints
-            if (this.inRectangle(x, y)) {
-                // Can move freely within box
-                this.x = x
-                this.y = y
-                this.HTML.style.top = this.y + 'px'
-                this.HTML.style.left = this.x + 'px'
-            } else {
-                // Can only move along valid axes
-                if (this.inRectangle(x, this.y)) {
-                    this.x = x
-                    this.HTML.style.left = this.x + 'px'
-                } else if (this.inRectangle(this.x, y)) {
-                    this.y = y
-                    this.HTML.style.top = this.y + 'px'
-                }
-            }
+            // If trapped, constrain movement within box
+            const newX = Math.max(
+                box.x + this.radius,
+                Math.min(box.x + box.width - this.radius, x)
+            )
+            const newY = Math.max(
+                box.y + this.radius,
+                Math.min(box.y + box.height - this.radius, y)
+            )
+            this.x = newX
+            this.y = newY
         }
+
+        // Update position
+        this.HTML.style.top = this.y + 'px'
+        this.HTML.style.left = this.x + 'px'
     }
 
-    trapped() {
-        if (
-            this.x > box.x &&
-            this.x + this.diameter < box.x + box.width &&
-            this.y > box.y &&
-            this.y + this.diameter < box.y + box.height
-        ) {
+    trapped(newX = this.x, newY = this.y) {
+        const circleCenter = {
+            x: newX + this.radius,
+            y: newY + this.radius
+        }
+
+        // Check if circle is completely inside box
+        const isInside = 
+            circleCenter.x - this.radius > box.x &&
+            circleCenter.x + this.radius < box.x + box.width &&
+            circleCenter.y - this.radius > box.y &&
+            circleCenter.y + this.radius < box.y + box.height
+
+        if (isInside) {
             this.isTrapped = true
             this.HTML.style.background = 'var(--purple)'
-        } else {
-            this.isTrapped = false
+        } else if (!this.isTrapped) {
+            // Only change back to white if not already trapped
             this.HTML.style.background = 'white'
         }
+
+        return isInside
     }
 
     inRectangle(x, y) {
+        const futureCenter = {
+            x: x + this.radius,
+            y: y + this.radius
+        }
+
         return (
-            x > box.x &&
-            x + this.diameter < box.x + box.width &&
-            y > box.y &&
-            y + this.diameter < box.y + box.height
+            futureCenter.x - this.radius > box.x &&
+            futureCenter.x + this.radius < box.x + box.width &&
+            futureCenter.y - this.radius > box.y &&
+            futureCenter.y + this.radius < box.y + box.height
         )
     }
 }
@@ -87,15 +97,15 @@ class Box {
         this.HTML.style.transform = 'translate(-50%, -50%)'
         document.body.appendChild(this.HTML)
 
-        // Calculate actual position after transform
-        this.x = this.HTML.offsetLeft - (this.HTML.offsetWidth / 2)
-        this.y = this.HTML.offsetTop - (this.HTML.offsetHeight / 2)
-        this.width = this.HTML.offsetWidth
-        this.height = this.HTML.offsetHeight
+        // Get actual position after transform
+        const rect = this.HTML.getBoundingClientRect()
+        this.x = rect.left
+        this.y = rect.top
+        this.width = rect.width
+        this.height = rect.height
     }
 }
 
-// Event handlers
 function createCircle(e) {
     if (e === undefined) return
     new Circle(e.clientX - 25, e.clientY - 25)
