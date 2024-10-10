@@ -26,3 +26,4 @@ function getBonannoPisano() {
     ];
 }
 
+export { getArchitects, getClassical, getActive, getBonannoPisano };
