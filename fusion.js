@@ -45,4 +45,4 @@ function fusion(obj, obj2) {
 
   return result;
 }
-console.log(fusion({1: "hello"}, {1: "world"}));
+// console.log(fusion({1: "hello"}, {1: "world"}));
