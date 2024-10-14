@@ -12,9 +12,7 @@ function fusion(obj, obj2) {
     } else if (Array.isArray(value2)) {
       result[key] = (value1 || []).concat(value2);
     } else if (typeof value1 === "string") {
-      result[key] = value1 + (value2 ? " " + value2 : " ");
-    } else if (typeof value2 === "string") {
-      result[key] = (value1 || "") + " " + value2+ " ";
+      result[key] = value1 + " " + value2;
     } else if (typeof value1 === "number") {
       result[key] = (value1 || 0) + (value2 || 0);
     } else if (typeof value2 === "number") {
