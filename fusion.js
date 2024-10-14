@@ -27,21 +27,22 @@ fusion({ a: "hello", b: [] }, { a: 4 }); // -> { a: 4, b: [] }
  */
 
 function fusion(obj, obj2) {
-    let result = {};
+  let result = {};
 
-    for (let key in obj) {
-        if (Array.isArray(obj[key])) {
-            result[key] = obj[key].concat(obj2[key] || []);
-        } else if (typeof obj[key] ==='string') {
-            result[key] = obj[key] + (obj2[key] || '');
-        } else if (typeof obj[key] === 'number') {
-            result[key] = obj[key] + (obj2[key] || 0);
-        } else if (typeof obj[key] === 'object' && obj[key]!== null) {
-            result[key] = fusion(obj[key], obj2[key]);
-        } else {
-            result[key] = obj2[key] || obj[key];
-        }
+  for (let key in obj) {
+    if (Array.isArray(obj[key])) {
+      result[key] = obj[key].concat(obj2[key] || []);
+    } else if (typeof obj[key] === "string") {
+      result[key] = obj[key] + " " + (obj2[key] || "");
+    } else if (typeof obj[key] === "number") {
+      result[key] = obj[key] + (obj2[key] || 0);
+    } else if (typeof obj[key] === "object" && obj[key] !== null) {
+      result[key] = fusion(obj[key], obj2[key]);
+    } else {
+      result[key] = obj2[key] || obj[key];
     }
+  }
 
-    return result;
+  return result;
 }
+console.log(fusion({1: "hello"}, {1: "world"}));
