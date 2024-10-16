@@ -26,6 +26,7 @@ function opThrottle(func, limit, options = {}) {
     const now = Date.now();
 
     if (!lastCall && options.leading !== false) {
+      lastCall = now;
       func.apply(context, args);
     }
 
@@ -45,3 +46,11 @@ function opThrottle(func, limit, options = {}) {
     }
   };
 }
+// function add() {
+//     return 1;
+// }
+
+// (async () => {
+// const result = await run(opThrottle(add, 26, { trailing: true }), 16, 4);
+// console.log(result);
+// })();
