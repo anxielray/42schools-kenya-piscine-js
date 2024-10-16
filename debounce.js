@@ -19,28 +19,25 @@ function debounce(func, wait) {
 
 // logMessage();
 
-function opDebounce(
-  func,
-  wait,
-  trailing = true,
-  leading = false,
-  maxWeight = 1
-) {
+function opDebounce(func, wait, options = {}) {
   let timeout;
+  let leadingCalled = false;
 
   return function (...args) {
     const context = this;
-    const callNow = !timeout;
+
+    if (options.leading && !leadingCalled) {
+      func.apply(context, args);
+      leadingCalled = true;
+    }
 
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      timeout = null;
-      if (trailing) func.apply(context, args);
+      if (options.trailing) {
+        func.apply(context, args);
+      }
+      leadingCalled = false;
     }, wait);
-
-    if (callNow && !trailing) {
-      func.apply(context, args);
-    }
   };
 }
 
