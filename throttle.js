@@ -17,40 +17,27 @@ function throttle(func, limit) {
   };
 }
 
-function opThrottle(func, limit, options = {}) {
-  let lastCall = 0;
-  let timeout;
-
-  return function (...args) {
-    const context = this;
-    const now = Date.now();
-
-    if (!lastCall && options.leading !== false) {
-      lastCall = now;
-      func.apply(context, args);
+function opThrottle(fn, delay, { leading = false, trailing = true } = {}) {
+  let last = 0;
+  let timer = null;
+  return function () {
+    const now = +new Date();
+    if (!last && leading === false) {
+      last = now;
     }
-
-    if (now - lastCall >= limit) {
-      lastCall = now;
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
+    if (now - last > delay) {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
       }
-      func.apply(context, args);
-    } else if (options.trailing !== false) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        lastCall = 0;
-        func.apply(context, args);
-      }, limit - (now - lastCall));
+      fn.apply(this, arguments);
+      last = now;
+    } else if (!timer && trailing !== false) {
+      timer = setTimeout(() => {
+        fn.apply(this, arguments);
+        last = +new Date();
+        timer = null;
+      }, delay);
     }
   };
 }
-// function add() {
-//     return 1;
-// }
-
-// (async () => {
-// const result = await run(opThrottle(add, 26, { trailing: true }), 16, 4);
-// console.log(result);
-// })();
