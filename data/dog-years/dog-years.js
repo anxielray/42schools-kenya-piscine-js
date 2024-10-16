@@ -1,3 +1,4 @@
+//make sure never to forget to remove temporalily the word 'export' from the function in order to test it, but return it back whenever we require to test the function...
 export function dogYears() {
   const secondsInEarthYear = 31557600;
   const orbitalPeriods = {
