@@ -44,9 +44,9 @@ function opDebounce(
   };
 }
 
-const logMessageWithTrailing = debounceWithTrailing(
-  () => console.log("Debounced with trailing!"),
-  1000,
-  true
-);
-logMessageWithTrailing();
+// const logMessageWithTrailing = opDebounce(
+//   () => console.log("Debounced with trailing!"),
+//   1000,
+//   true
+// );
+// logMessageWithOptions();
