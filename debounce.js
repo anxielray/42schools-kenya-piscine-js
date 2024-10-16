@@ -19,7 +19,7 @@ function debounce(func, wait) {
 
 // logMessage();
 
-function debounceWithTrailing(
+function opDebounce(
   func,
   wait,
   trailing = true,
