@@ -13,16 +13,13 @@ if (!fileName) {
 
 // Function to reverse the very disco transformation
 function reverseVeryDisco(transformedWord) {
-  // Check if the word is "verydisco (🕺🏼)"
-  if (transformedWord === 'verydisco (🕺🏼)') {
-    return 'discovery';
-  }
-
   // For other words, we need to split the word into halves
-  const midIndex = Math.ceil(transformedWord.length / 2);
-  const firstHalf = transformedWord.slice(midIndex); // Second half
-  const secondHalf = transformedWord.slice(0, midIndex); // First half
-  return secondHalf + firstHalf; // Reconstruct the original word
+  const midIndex = Math.floor(transformedWord.length / 2); // Use Math.floor for splitting
+  const firstHalf = transformedWord.slice(0, midIndex); // Get the first half
+  const secondHalf = transformedWord.slice(midIndex); // Get the second half
+
+  // Reconstruct the original word by swapping halves
+  return secondHalf + firstHalf;
 }
 
 // Read the content of the file asynchronously
@@ -32,11 +29,11 @@ fs.readFile(fileName, 'utf8', (err, content) => {
     process.exit(1);
   }
 
-  // Split the content into words and reverse the transformation
-  const discoWords = content.split(' ').map(reverseVeryDisco);
+  // Remove any extra whitespace and only work with the first line or trimmed content
+  const transformedWord = content.trim(); 
 
-  // Join the reversed words back into a single string
-  const result = discoWords.join(' ');
+  // Reverse the transformation on the single word
+  const result = reverseVeryDisco(transformedWord);
 
   // Print the result in the console
   console.log(result);
