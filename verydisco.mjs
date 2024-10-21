@@ -12,7 +12,7 @@ const words = inputString.split(' ');
 function makeVeryDisco(word) {
   // Check if the word is "discovery"
   if (word.toLowerCase() === 'discovery') {
-    return 'verydisco (🕺🏼)';
+    return 'verydisco';
   }
 
   // For other words, cut and reverse them
