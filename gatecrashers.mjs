@@ -37,21 +37,21 @@ const server = http.createServer(async (req, res) => {
     // Read the request body
     const body = await getRequestBody(req);
 
-    // Create or update the guest file
-    const filePath = path.join(GUESTS_DIR, `${guestName}.json`);
-    await fs.writeFile(filePath, body);
-
-    // Try to parse the body as JSON for the response
-    let responseData;
+    // Try to parse the body as JSON for the response and file writing
+    let parsedBody;
     try {
-      responseData = JSON.parse(body);
+      parsedBody = JSON.parse(body);
     } catch (jsonError) {
-      // If parsing fails, send the raw body
-      responseData = body;
+      // If parsing fails, handle it gracefully
+      return sendResponse(res, 500, { error: 'Invalid JSON' });
     }
 
-    // Return the body and status 200
-    sendResponse(res, 200, responseData);
+    // Create or update the guest file
+    const filePath = path.join(GUESTS_DIR, `${guestName}.json`);
+    await fs.writeFile(filePath, JSON.stringify(parsedBody));
+
+    // Return the parsed body and status 200
+    sendResponse(res, 200, parsedBody);
   } catch (err) {
     console.error('Error:', err);
     sendResponse(res, 500, { error: 'server failed' });
