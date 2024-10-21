@@ -35,14 +35,21 @@ const server = http.createServer((req, res) => {
 
         // Save the new guest to a JSON file (this will overwrite if it exists)
         fs.writeFile(filePath, JSON.stringify(guestData, null, 2), (err) => {
+          if (err) {
+            // Handle any file write errors
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'server failed' }));
+            return;
+          }
+
           // Respond with 201 regardless of the file's previous existence
           res.writeHead(201, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify(guestData)); // Return the guest data
         });
       } catch (error) {
-        // Respond with 201 even if JSON parsing fails or on any error
-        res.writeHead(201, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'server failed' })); // Return server failure
+        // Respond with 500 for JSON parsing errors
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'server failed' }));
       }
     });
   } else {
