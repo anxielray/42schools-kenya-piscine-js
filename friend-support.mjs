@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
         } else {
           // Server error
           res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: "Server failed" }));
+          res.end(JSON.stringify({ error: "server failed" })); // Update this line
         }
       } else {
         // File found, send the content as JSON
