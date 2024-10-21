@@ -1,18 +1,20 @@
-import http from 'http';
-import fs from 'fs';
-import path from 'path';
+import http from 'http'; // Import the HTTP module
+import fs from 'fs'; // Import the file system module
+import path from 'path'; // Import the path module
 
-const PORT = 5000;
-const GUESTS_DIRECTORY = './guests';
+const PORT = 5000; // Set the port to 5000
+const GUESTS_DIRECTORY = './guests'; // Directory to store guest data
 
 // Create the guests directory if it doesn't exist
 if (!fs.existsSync(GUESTS_DIRECTORY)) {
   fs.mkdirSync(GUESTS_DIRECTORY);
 }
 
+// Create the HTTP server
 const server = http.createServer((req, res) => {
-  if (req.method === 'POST') {
-    const guestName = req.url.substring(1); // Extract guest name from URL
+  const guestName = req.url.slice(1); // Remove the leading slash to get the guest name
+
+  if (req.method === 'POST' && guestName) {
     let body = '';
 
     req.on('data', chunk => {
@@ -44,14 +46,34 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({ error: 'server failed' }));
       }
     });
+  } else if (req.method === 'GET' && guestName) {
+    const filePath = path.join(GUESTS_DIRECTORY, `${guestName}.json`); // Construct the file path
+
+    fs.readFile(filePath, 'utf8', (err, content) => {
+      if (err) {
+        if (err.code === 'ENOENT') {
+          // File not found
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: "guest not found" }));
+        } else {
+          // Server error
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: "server failed" }));
+        }
+      } else {
+        // File found, send the content as JSON
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(content); // Send the JSON content directly
+      }
+    });
   } else {
-    // Handle unsupported HTTP methods
-    res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'server failed' }));
+    // Handle unsupported methods or routes
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: "guest not found" }));
   }
 });
 
-// Start the server and log the listening port
+// Start the server
 server.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
