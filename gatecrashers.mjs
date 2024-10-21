@@ -31,8 +31,9 @@ const server = http.createServer(async (req, res) => {
   }
 
   try {
-    // Ensure the guests directory exists
-    await fs.mkdir(GUESTS_DIR, { recursive: true });
+    // Ensure the guests directory exists in the test context path (ctx.tmpPath)
+    const guestsDirPath = path.join(process.cwd(), GUESTS_DIR); // This ensures the directory is created in the current working directory (test context)
+    await fs.mkdir(guestsDirPath, { recursive: true });
 
     // Read the request body
     const body = await getRequestBody(req);
@@ -47,7 +48,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     // Create or update the guest file
-    const filePath = path.join(GUESTS_DIR, `${guestName}.json`);
+    const filePath = path.join(guestsDirPath, `${guestName}.json`);
     await fs.writeFile(filePath, JSON.stringify(parsedBody));
 
     // Return the parsed body and status 200
