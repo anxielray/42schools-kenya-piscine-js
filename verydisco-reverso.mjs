@@ -29,11 +29,11 @@ fs.readFile(fileName, 'utf8', (err, content) => {
     process.exit(1);
   }
 
-  // Remove any extra whitespace and only work with the first line or trimmed content
-  const transformedWord = content.trim(); 
+  // Split the content into words and reverse the transformation
+  const discoWords = content.trim().split(' ').map(word => reverseVeryDisco(word));
 
-  // Reverse the transformation on the single word
-  const result = reverseVeryDisco(transformedWord);
+  // Join the reversed words back into a single string with spaces
+  const result = discoWords.join(' '); // Join with space to separate words
 
   // Print the result in the console
   console.log(result);
