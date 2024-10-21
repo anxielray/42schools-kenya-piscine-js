@@ -3,10 +3,11 @@ import fs from 'fs'; // Import the file system module
 import path from 'path'; // Import the path module
 
 const PORT = 5000; // Set the port to 5000
-const GUESTS_DIRECTORY = './guests'; // Change this to your guests directory
+const GUESTS_DIRECTORY = './guests'; // Directory where guest files will be stored
 
 // Create the HTTP server
 const server = http.createServer((req, res) => {
+  // Only handle POST requests
   if (req.method === 'POST') {
     // Extract the guest name from the URL (remove leading '/')
     const guestName = req.url.substring(1); // Get the URL path without leading slash
@@ -20,7 +21,7 @@ const server = http.createServer((req, res) => {
     // Once all data is received
     req.on('end', () => {
       try {
-        // Parse the incoming data
+        // Parse the incoming data as JSON
         const guestData = JSON.parse(body);
 
         // Validate the incoming data
@@ -52,7 +53,7 @@ const server = http.createServer((req, res) => {
       }
     });
   } else {
-    // Handle unsupported methods with 405 Method Not Allowed
+    // Handle unsupported methods
     res.writeHead(405, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Method not allowed' }));
   }
