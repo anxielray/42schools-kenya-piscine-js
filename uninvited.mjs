@@ -1,79 +1,49 @@
-import http from 'http'; // Import the HTTP module
-import fs from 'fs'; // Import the file system module
-import path from 'path'; // Import the path module
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
 
-const PORT = 5000; // Set the port to 5000
-const GUESTS_DIRECTORY = './guests'; // Directory to store guest data
+// Set the port number
+const PORT = 5000;
 
-// Create the guests directory if it doesn't exist
-if (!fs.existsSync(GUESTS_DIRECTORY)) {
-  fs.mkdirSync(GUESTS_DIRECTORY);
-}
-
-// Create the HTTP server
+// Create the server
 const server = http.createServer((req, res) => {
-  const guestName = req.url.slice(1); // Remove the leading slash to get the guest name
+    // Only handle POST requests
+    if (req.method === 'POST') {
+        // Extract the guest name from the URL
+        const guestName = req.url.slice(1); // Remove the leading '/'
 
-  if (req.method === 'POST' && guestName) {
-    let body = '';
-
-    req.on('data', chunk => {
-      body += chunk.toString(); // Accumulate data chunks
-    });
-
-    req.on('end', () => {
-      try {
-        const guestData = JSON.parse(body); // Parse incoming JSON data
-        const guestFileName = `${guestName}.json`;
-        const filePath = path.join(GUESTS_DIRECTORY, guestFileName);
-
-        // Write the guest data to a JSON file
-        fs.writeFile(filePath, JSON.stringify(guestData, null, 2), (err) => {
-          if (err) {
-            console.error('Error writing file:', err); // Log the error
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'server failed' }));
-            return;
-          }
-
-          // Respond with the created guest data
-          res.writeHead(201, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify(guestData));
+        // Collect the data from the request body
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString(); // Convert Buffer to string
         });
-      } catch (error) {
-        console.error('Error parsing JSON:', error); // Log the error
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'server failed' }));
-      }
-    });
-  } else if (req.method === 'GET' && guestName) {
-    const filePath = path.join(GUESTS_DIRECTORY, `${guestName}.json`); // Construct the file path
 
-    fs.readFile(filePath, 'utf8', (err, content) => {
-      if (err) {
-        if (err.code === 'ENOENT') {
-          // File not found
-          res.writeHead(404, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: "guest not found" }));
-        } else {
-          // Server error
-          res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: "server failed" }));
-        }
-      } else {
-        // File found, send the content as JSON
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(content); // Send the JSON content directly
-      }
-    });
-  } else {
-    // Handle unsupported methods or routes
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: "guest not found" }));
-  }
+        req.on('end', () => {
+            // Create the file path for the guest
+            const filePath = path.join(__dirname, `${guestName}.json`);
+
+            // Write the data to the JSON file
+            fs.writeFile(filePath, body, 'utf8', (err) => {
+                if (err) {
+                    // If there's an error, respond with 500
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'server failed' }));
+                    return;
+                }
+
+                // If successful, respond with 201 and the content
+                res.writeHead(201, { 'Content-Type': 'application/json' });
+                res.end(body);
+            });
+        });
+    } else {
+        // If not a POST request, respond with 404
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Not Found' }));
+    }
 });
 
-// Start the server
+// Start listening on the specified port
 server.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server is listening on port ${PORT}`);
 });
