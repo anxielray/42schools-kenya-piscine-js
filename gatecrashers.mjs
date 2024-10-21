@@ -50,7 +50,8 @@ const server = http.createServer(async (req, res) => {
       responseData = body;
     }
 
-    sendResponse(res, 201, responseData);
+    // Return the body and status 200
+    sendResponse(res, 200, responseData);
   } catch (err) {
     console.error('Error:', err);
     sendResponse(res, 500, { error: 'server failed' });
