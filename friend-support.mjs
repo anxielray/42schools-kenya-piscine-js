@@ -19,11 +19,11 @@ const server = http.createServer((req, res) => {
         if (err.code === 'ENOENT') {
           // File not found
           res.writeHead(404, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: "Guest not found" }));
+          res.end(JSON.stringify({ error: "guest not found" })); // Update this line
         } else {
           // Server error
           res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: "server failed" })); // Update this line
+          res.end(JSON.stringify({ error: "server failed" }));
         }
       } else {
         // File found, send the content as JSON
@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
   } else {
     // Handle 404 for any other routes
     res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: "Guest not found" }));
+    res.end(JSON.stringify({ error: "guest not found" })); // Ensure consistency here as well
   }
 });
 
