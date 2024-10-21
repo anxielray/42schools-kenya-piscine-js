@@ -9,8 +9,7 @@ const GUESTS_DIRECTORY = './guests'; // Change this to your guests directory
 
 // Create the HTTP server
 const server = http.createServer((req, res) => {
-  const urlParts = req.url.split('/'); // Split the URL to get the requested guest
-  const guestName = urlParts[2]; // Extract the guest name from the URL
+  const guestName = req.url.slice(1); // Remove the leading slash to get the guest name
 
   if (req.method === 'GET' && guestName) {
     const filePath = path.join(GUESTS_DIRECTORY, `${guestName}.json`); // Construct the file path
